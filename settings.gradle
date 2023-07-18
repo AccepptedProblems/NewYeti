@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "NewYeti"
-include ':app'
+include ':newyeti'
