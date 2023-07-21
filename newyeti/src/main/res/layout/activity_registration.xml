@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registration">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-27dp"
+        tools:layout_editor_absoluteY="226dp"
+        android:paddingTop="40dp"
+        android:paddingLeft="27dp"
+        android:paddingRight="27dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign up"
+            android:textSize="30dp"
+            android:fontFamily="@font/poppins_bold" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create an account to get started"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <EditText
+            android:id="@+id/nameRegis"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="text"
+            android:background="@drawable/custom_edittext"
+            android:padding="10dp"
+            android:hint="Your name"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Adress"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <EditText
+            android:id="@+id/emailRegis"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:textSize="16dp"
+            android:inputType="text"
+            android:background="@drawable/custom_edittext"
+            android:padding="10dp"
+            android:hint="name@email.com"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/textPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <EditText
+            android:id="@+id/passwordRegis"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:textSize="16dp"
+            android:inputType="textPassword"
+            android:background="@drawable/custom_edittext"
+            android:padding="10dp"
+            android:hint="Create a password"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            />
+        <EditText
+            android:id="@+id/rePasswordRegis"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:textSize="16dp"
+            android:inputType="textPassword"
+            android:background="@drawable/custom_edittext"
+            android:padding="10dp"
+            android:hint="Create a password"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/textGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:id="@+id/radio_a"
+                android:text="Male"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_b"
+                android:text="Female"
+                android:checked="true"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_regular"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date of birth"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <EditText
+            android:id="@+id/birthRegis"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:textSize="16dp"
+            android:inputType="datetime"
+            android:background="@drawable/custom_edittext"
+            android:padding="10dp"
+            android:hint="Select date of birth"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/text_blue"
+            android:text="Sign up"
+            android:fontFamily="@font/poppins_regular"
+            app:cornerRadius="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Already have account?"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textForwardLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Login"
+                android:textColor="@color/text_blue"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

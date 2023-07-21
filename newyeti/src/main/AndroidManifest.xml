@@ -9,7 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewYeti">
         <activity
+            android:name=".registration"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
