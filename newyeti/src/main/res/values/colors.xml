@@ -5,4 +5,8 @@
     <color name="bg_color">#A7C9FB</color>
     <color name="border_color">#CCCDD2</color>
     <color name="text_blue">#006FFD</color>
+    <color name="bg_search">#F8F9FE</color>
+    <color name="bg_icon">#D4D6DD</color>
+    <color name="red">#E50000</color>
+    <color name="opacity">#80000000</color>
 </resources>

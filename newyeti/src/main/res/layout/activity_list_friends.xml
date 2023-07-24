@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".listFriends">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/textView"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="Chats"
+                android:text="Bạn bè"
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_bold"/>
@@ -36,55 +36,15 @@
                 android:backgroundTint="@color/bg_color"
                 android:text="s"
                 android:textColor="@color/bg_color"
-                android:drawableLeft="@drawable/edit_icon" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:gravity="center">
-
-            <EditText
-                android:id="@+id/search"
-                android:layout_width="380dp"
-                android:layout_height="45dp"
-                android:ems="10"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="16dp"
-                android:inputType="text"
-                android:drawableLeft="@drawable/search_icon"
-                android:hint="  Tìm kiếm"
-                android:background="@drawable/custom_search"
-                android:paddingLeft="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:orientation="vertical"
-            android:background="@color/bg_color">
+                android:drawableLeft="@drawable/add_icon" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.815"
             android:orientation="vertical"
             android:background="@color/white">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listChatView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Switch" />
         </LinearLayout>
 
         <LinearLayout
@@ -100,10 +60,10 @@
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:padding="0dp"
-                android:drawableTop="@drawable/chat_icon_focus"
+                android:drawableTop="@drawable/chat_icon"
                 android:backgroundTint="@color/white"
                 android:text="Nhắn tin"
-                android:textColor="@color/black"
+                android:textColor="@color/bg_icon"
                 android:layout_marginRight="50dp"/>
 
             <Button
@@ -111,10 +71,10 @@
                 android:layout_width="70dp"
                 android:layout_height="65dp"
                 android:padding="0dp"
-                android:drawableTop="@drawable/person_icon"
+                android:drawableTop="@drawable/person_icon_focus"
                 android:backgroundTint="@color/white"
                 android:text="Bạn bè"
-                android:textColor="@color/bg_icon"
+                android:textColor="@color/black"
                 android:layout_marginRight="50dp"/>
 
             <Button
@@ -129,4 +89,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

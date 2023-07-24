@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".setting">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,76 +15,58 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:orientation="horizontal"
-            android:background="@color/bg_color"
-            android:gravity="right"
+            android:background="@color/white"
+            android:gravity="center"
             android:paddingRight="20dp"
             android:paddingTop="3dp">
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="160dp"
+                android:layout_width="92dp"
                 android:layout_height="wrap_content"
-                android:text="Chats"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Cài đặt"
+                android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_bold"/>
+                android:gravity="center"/>
 
-            <Button
-                android:id="@+id/editProfile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/bg_color"
-                android:text="s"
-                android:textColor="@color/bg_color"
-                android:drawableLeft="@drawable/edit_icon" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:gravity="center">
-
-            <EditText
-                android:id="@+id/search"
-                android:layout_width="380dp"
-                android:layout_height="45dp"
-                android:ems="10"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="16dp"
-                android:inputType="text"
-                android:drawableLeft="@drawable/search_icon"
-                android:hint="  Tìm kiếm"
-                android:background="@drawable/custom_search"
-                android:paddingLeft="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:orientation="vertical"
-            android:background="@color/bg_color">
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.3"
+            android:orientation="vertical"
+            android:background="@color/white">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.515"
             android:orientation="vertical"
             android:background="@color/white">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listChatView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <Switch
-                android:id="@+id/switch1"
+            <Button
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Switch" />
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                android:gravity="left"
+                android:drawableRight="@drawable/next_icon"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Xem thông tin" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:gravity="left"
+                android:textColor="@color/red"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Đăng xuất" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -100,10 +82,10 @@
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:padding="0dp"
-                android:drawableTop="@drawable/chat_icon_focus"
+                android:drawableTop="@drawable/chat_icon"
                 android:backgroundTint="@color/white"
                 android:text="Nhắn tin"
-                android:textColor="@color/black"
+                android:textColor="@color/bg_icon"
                 android:layout_marginRight="50dp"/>
 
             <Button
@@ -122,11 +104,12 @@
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:padding="0dp"
-                android:drawableTop="@drawable/setting_icon"
+                android:drawableTop="@drawable/setting_icon_focus"
                 android:backgroundTint="@color/white"
                 android:text="Cài đặt"
-                android:textColor="@color/bg_icon"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
