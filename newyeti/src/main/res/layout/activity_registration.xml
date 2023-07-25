@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration">
+    tools:context=".Registration">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign up"
+            android:text="Đăng ký"
             android:textSize="30dp"
             android:fontFamily="@font/poppins_bold" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create an account to get started"
+            android:text="Tạo một tài khoản để bắt đầu."
             android:textSize="16dp"
             android:fontFamily="@font/poppins_regular"
             android:layout_marginBottom="30dp"/>
@@ -38,7 +38,7 @@
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="Tên"
             android:textSize="16dp"
             android:fontFamily="@font/poppins_bold"/>
 
@@ -50,7 +50,7 @@
             android:inputType="text"
             android:background="@drawable/custom_edittext"
             android:padding="10dp"
-            android:hint="Your name"
+            android:hint="Nhập tên của bạn"
             android:textSize="16dp"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
@@ -61,7 +61,7 @@
             android:id="@+id/textViewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email Adress"
+            android:text="Nhập email"
             android:textSize="16dp"
             android:fontFamily="@font/poppins_bold"/>
 
@@ -84,7 +84,7 @@
             android:id="@+id/textPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Mật khẩu"
             android:textSize="16dp"
             android:fontFamily="@font/poppins_bold"/>
 
@@ -97,7 +97,7 @@
             android:inputType="textPassword"
             android:background="@drawable/custom_edittext"
             android:padding="10dp"
-            android:hint="Create a password"
+            android:hint="Nhập mật khẩu"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
             android:layout_marginBottom="10dp"
@@ -111,7 +111,7 @@
             android:inputType="textPassword"
             android:background="@drawable/custom_edittext"
             android:padding="10dp"
-            android:hint="Create a password"
+            android:hint="Nhập lại mật khẩu"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
             android:layout_marginBottom="10dp"
@@ -121,7 +121,7 @@
             android:id="@+id/textGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender"
+            android:text="Giới tính"
             android:textSize="16dp"
             android:fontFamily="@font/poppins_bold"/>
 
@@ -132,7 +132,7 @@
             >
             <RadioButton
                 android:id="@+id/radio_a"
-                android:text="Male"
+                android:text="Nam"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
@@ -141,7 +141,7 @@
 
             <RadioButton
                 android:id="@+id/radio_b"
-                android:text="Female"
+                android:text="Nữ"
                 android:checked="true"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
@@ -152,7 +152,7 @@
             android:id="@+id/textBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date of birth"
+            android:text="Ngày sinh"
             android:textSize="16dp"
             android:fontFamily="@font/poppins_bold"/>
 
@@ -165,7 +165,7 @@
             android:inputType="datetime"
             android:background="@drawable/custom_edittext"
             android:padding="10dp"
-            android:hint="Select date of birth"
+            android:hint="Nhập ngày sinh"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
             android:layout_marginBottom="20dp"
@@ -177,7 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:backgroundTint="@color/text_blue"
-            android:text="Sign up"
+            android:text="Đăng ký"
             android:fontFamily="@font/poppins_regular"
             app:cornerRadius="10dp"/>
 
@@ -190,11 +190,12 @@
 
             <TextView
                 android:id="@+id/text"
-                android:layout_width="168dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Already have account?"
+                android:text="Bạn đã có tài khoản?"
                 android:textColor="@color/black"
+                android:layout_marginRight="5dp"
                 android:textSize="14dp" />
 
             <TextView
@@ -202,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Login"
+                android:text="Đăng nhập"
                 android:textColor="@color/text_blue"
                 android:textSize="14dp" />
 

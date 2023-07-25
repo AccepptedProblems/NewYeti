@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".SearchList">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,29 +17,29 @@
             android:orientation="horizontal"
             android:background="@color/bg_color"
             android:gravity="center"
-            android:paddingRight="20dp"
             android:paddingTop="3dp">
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Nhắn tin"
+                android:gravity="center"
+                android:text="Thêm bạn bè"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@color/white"
             android:gravity="center">
 
             <EditText
                 android:id="@+id/search"
-                android:layout_width="380dp"
+                android:layout_width="300dp"
                 android:layout_height="45dp"
                 android:ems="10"
                 android:fontFamily="@font/poppins_regular"
@@ -50,6 +50,16 @@
                 android:background="@drawable/custom_search"
                 android:paddingLeft="10dp"/>
 
+            <TextView
+                android:id="@+id/cancelSearch"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/text_blue"
+                android:text="Hủy" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -57,57 +67,16 @@
             android:layout_height="0dp"
             android:layout_weight="0.7"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="20dp"
             android:background="@color/white">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listChatView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/chat_item"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:gravity="center">
-
-
-            <Button
-                android:id="@+id/listChats"
-                android:layout_width="70dp"
-                android:layout_height="60dp"
-                android:padding="0dp"
-                android:drawableTop="@drawable/chat_icon_focus"
-                android:backgroundTint="@color/white"
-                android:text="Nhắn tin"
-                android:textColor="@color/black"
-                android:layout_marginRight="50dp"/>
-
-            <Button
-                android:id="@+id/listFriends"
-                android:layout_width="70dp"
-                android:layout_height="65dp"
-                android:padding="0dp"
-                android:drawableTop="@drawable/person_icon"
-                android:backgroundTint="@color/white"
-                android:text="Bạn bè"
-                android:textColor="@color/bg_icon"
-                android:layout_marginRight="50dp"/>
-
-            <Button
-                android:id="@+id/setting"
-                android:layout_width="70dp"
-                android:layout_height="60dp"
-                android:padding="0dp"
-                android:drawableTop="@drawable/setting_icon"
-                android:backgroundTint="@color/white"
-                android:text="Cài đặt"
-                android:textColor="@color/bg_icon"/>
+                tools:listitem="@layout/user_item"/>
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

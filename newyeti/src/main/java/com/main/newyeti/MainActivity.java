@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         listChats = findViewById(R.id.listChats);
         listFriends = findViewById(R.id.listFriends);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         listFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.main.newyeti.listFriends.class);
+                Intent intent = new Intent(MainActivity.this, ListFriends.class);
                 startActivity(intent);
                 finish();
             }
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, setting.class);
+                Intent intent = new Intent(MainActivity.this, Setting.class);
                 startActivity(intent);
                 finish();
             }

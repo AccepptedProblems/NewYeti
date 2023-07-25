@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".logoutDialog">
+    tools:context=".LogoutDialog">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"
@@ -21,7 +21,6 @@
             android:layout_height="190dp"
             android:orientation="vertical"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:padding="20dp"
             android:background="@drawable/custom_edittext">
 
@@ -51,7 +50,7 @@
                 android:layout_marginTop="20dp">
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/cancelBtn"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="20dp"
@@ -63,7 +62,7 @@
                     app:cornerRadius="10dp" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/logoutBtn"
                     android:layout_width="90dp"
                     android:padding="0dp"
                     android:layout_height="50dp"

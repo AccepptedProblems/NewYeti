@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     Button login;
     TextView signup;
@@ -17,6 +17,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         login = findViewById(R.id.btnLogin);
         signup = findViewById(R.id.textForwardRegis);
@@ -24,7 +25,7 @@ public class login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(login.this, MainActivity.class);
+                Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -33,7 +34,7 @@ public class login extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(login.this, registration.class);
+                Intent intent = new Intent(Login.this, Registration.class);
                 startActivity(intent);
                 finish();
             }
