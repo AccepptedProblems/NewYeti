@@ -1,17 +1,27 @@
 package com.main.newyeti;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.main.newyeti.api.ApiService;
+import com.main.newyeti.model.User;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
+    private Button login;
+    private TextView signup;
+    private EditText email, password;
 
-    Button login;
-    TextView signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,23 +32,46 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.btnLogin);
         signup = findViewById(R.id.textForwardRegis);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        email = findViewById(R.id.emailLogin);
+        password = findViewById(R.id.passwordLogin);
+
+        login.setOnClickListener(view -> {
+            login();
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Registration.class);
-                startActivity(intent);
-                finish();
-            }
+        signup.setOnClickListener(view -> {
+            Intent intent = new Intent(Login.this, Registration.class);
+            startActivity(intent);
+            finish();
         });
 
+    }
+
+    private void login() {
+        String emailText = email.getText().toString();
+        String passwordText = password.getText().toString();
+        Log.e("Login", "login: " + emailText + " " + passwordText);
+
+        ApiService.apiService.login(new User(emailText, passwordText)).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body() != null && response.isSuccessful()) {
+//                    User user = response.body();
+                    Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+//                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                Log.e("Login", "onFailure: " + t.getMessage());
+            }
+        });
     }
 }

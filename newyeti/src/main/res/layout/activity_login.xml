@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Xin chào!"
-                android:textSize="36dp"
+                android:textSize="36sp"
                 android:fontFamily="@font/poppins_bold"/>
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Vui lòng đăng nhập để tiếp tục."
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginBottom="60dp"/>
 
@@ -52,7 +52,7 @@
                 android:background="@drawable/custom_edittext"
                 android:padding="10dp"
                 android:hint="Nhập email"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:inputType="textPassword"
                 android:background="@drawable/custom_edittext"
                 android:padding="10dp"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="Quên mật khẩu?"
                 android:textColor="@color/text_blue"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginBottom="30dp"/>
 
@@ -105,8 +105,8 @@
                     android:layout_height="wrap_content"
                     android:text="Không phải thành viên?"
                     android:textColor="@color/black"
-                    android:textSize="14dp"
-                    android:layout_marginRight="5dp"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/poppins_regular"
                     />
 
@@ -117,7 +117,7 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="Đăng ký ngay"
                     android:textColor="@color/text_blue"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

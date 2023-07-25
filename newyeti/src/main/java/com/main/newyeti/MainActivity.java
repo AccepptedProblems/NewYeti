@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
     private RecyclerView listChatView;
     private RecyclerView.Adapter listChatAdapter;
     private Button listChats, listFriends, setting;
@@ -25,22 +23,16 @@ public class MainActivity extends AppCompatActivity {
         listFriends = findViewById(R.id.listFriends);
         setting = findViewById(R.id.setting);
 
-        listFriends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListFriends.class);
-                startActivity(intent);
-                finish();
-            }
+        listFriends.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ListFriends.class);
+            startActivity(intent);
+            finish();
         });
 
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Setting.class);
-                startActivity(intent);
-                finish();
-            }
+        setting.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, Setting.class);
+            startActivity(intent);
+            finish();
         });
 
         listChatView = findViewById(R.id.listChatView);
