@@ -1,127 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
-    tools:context=".Login">
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:weightSum="2">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        tools:ignore="MissingConstraints">
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:background="@drawable/border_radius_top"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_24sdp"
+        android:paddingTop="@dimen/_40sdp"
+        android:paddingRight="@dimen/_24sdp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/title_login"
+            android:textSize="36sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/describe_login"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <EditText
+            android:id="@+id/usernameLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:autofillHints=""
+            android:background="@drawable/custom_edittext"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/hint_username_login"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints="1234"
+            android:background="@drawable/custom_edittext"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/hint_pw_login"
+            android:inputType="textPassword"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/usernameLogin"
+            tools:layout_editor_absoluteX="31dp" />
+
+        <TextView
+            android:id="@+id/textForgotPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/forgot_pw_login"
+            android:textColor="@color/text_blue"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:backgroundTint="@color/text_blue"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/btn_login"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textForgotPass" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
-            android:background="@drawable/border_radius_top"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="-27dp"
-            tools:layout_editor_absoluteY="226dp"
-            android:paddingTop="60dp"
-            android:paddingLeft="27dp"
-            android:paddingRight="27dp"
-            tools:ignore="MissingConstraints">
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin">
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Xin chào!"
-                android:textSize="36sp"
-                android:fontFamily="@font/poppins_bold"/>
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vui lòng đăng nhập để tiếp tục."
-                android:textSize="16sp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="60dp"/>
-
-            <EditText
-                android:id="@+id/emailLogin"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:inputType="text"
-                android:background="@drawable/custom_edittext"
-                android:padding="10dp"
-                android:hint="Nhập email"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
+                android:text="@string/text_to_register_login"
                 android:textColor="@color/black"
-                android:layout_marginBottom="20dp"
-                />
-
-            <EditText
-                android:id="@+id/passwordLogin"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:textSize="16sp"
-                android:inputType="textPassword"
-                android:background="@drawable/custom_edittext"
-                android:padding="10dp"
-                android:hint="Nhập mật khẩu"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/black"
-                android:layout_marginBottom="20dp"
-                />
+                android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textForgotPass"
-                android:layout_width="match_parent"
+                android:id="@+id/textForwardRegis"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quên mật khẩu?"
-                android:textColor="@color/text_blue"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="20dp"/>
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:backgroundTint="@color/text_blue"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Đăng nhập"
-                app:cornerRadius="10dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Không phải thành viên?"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/poppins_regular"
-                    />
-
-                <TextView
-                    android:id="@+id/textForwardRegis"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Đăng ký"
-                    android:textColor="@color/text_blue"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
+                android:text="@string/btn_register"
+                android:textColor="@color/text_blue"
+                android:textSize="14sp" />
 
         </LinearLayout>
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

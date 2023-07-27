@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">NewYeti</string>
+
+    <string name="title_login">Xin chào!</string>
+    <string name="describe_login">Vui lòng đăng nhập để tiếp tục.</string>
+    <string name="hint_username_login">Nhập email</string>
+    <string name="hint_pw_login">Nhập mật khẩu</string>
+    <string name="forgot_pw_login">Quên mật khẩu?</string>
+    <string name="btn_login">Đăng nhập</string>
+
+    <string name="text_to_register_login">Không phải thành viên?</string>
+    <string name="btn_register">Đăng ký</string>
+    <string name="title_register">Đăng ký</string>
+    <string name="describe_register">Tạo một tài khoản để bắt đầu.</string>
+    <string name="text_name_register">Tên</string>
+    <string name="hint_name_register">Nhập tên của bạn</string>
+    <string name="text_email_register">Nhập email</string>
+    <string name="hint_email_register">name@email.com</string>
+    <string name="pass_register">Mật khẩu</string>
+    <string name="input_pw_register">Nhập mật khẩu</string>
+    <string name="reinput_pw_register">Nhập lại mật khẩu</string>
+    <string name="sex_register">Giới tính</string>
+    <string name="DoB_register">Ngày sinh</string>
+    <string name="male_register">Nam</string>
+    <string name="female_register">Nữ</string>
+    <string name="hint_DoB_register">10/07/2002</string>
+    <string name="btn_login_register">Đăng nhập</string>
+    <string name="text_to_login_register">Bạn đã có tài khoản?</string>
+    <string name="register">Đăng ký</string>
+
+
 </resources>

@@ -1,213 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registration">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-27dp"
-        tools:layout_editor_absoluteY="226dp"
-        android:paddingTop="40dp"
-        android:paddingLeft="27dp"
-        android:paddingRight="27dp"
-        tools:ignore="MissingConstraints">
+        android:paddingLeft="@dimen/_24sdp"
+        android:paddingTop="@dimen/_30sdp"
+        android:paddingRight="@dimen/_24sdp">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đăng ký"
-            android:textSize="30dp"
-            android:fontFamily="@font/poppins_bold" />
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/title_register"
+            android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tạo một tài khoản để bắt đầu."
-            android:textSize="16dp"
             android:fontFamily="@font/poppins_regular"
-            android:layout_marginBottom="30dp"/>
+            android:text="@string/describe_register"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_bold"/>
+            android:layout_marginTop="@dimen/_40sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/text_name_register"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
 
         <EditText
             android:id="@+id/nameRegis"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="text"
             android:background="@drawable/custom_edittext"
-            android:padding="10dp"
-            android:hint="Nhập tên của bạn"
-            android:textSize="16dp"
+            android:ems="10"
             android:fontFamily="@font/poppins_regular"
+            android:hint="@string/hint_name_register"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@color/black"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
         <TextView
             android:id="@+id/textViewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nhập email"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_bold"/>
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/text_email_register"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
         <EditText
             android:id="@+id/emailRegis"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:ems="10"
-            android:textSize="16dp"
-            android:inputType="text"
             android:background="@drawable/custom_edittext"
-            android:padding="10dp"
-            android:hint="name@email.com"
+            android:ems="10"
             android:fontFamily="@font/poppins_regular"
+            android:hint="@string/hint_email_register"
+            android:inputType="textEmailAddress"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:textColor="@color/black"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
         <TextView
             android:id="@+id/textPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mật khẩu"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_bold"/>
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/pass_register"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
         <EditText
             android:id="@+id/passwordRegis"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:ems="10"
-            android:textSize="16dp"
-            android:inputType="textPassword"
             android:background="@drawable/custom_edittext"
-            android:padding="10dp"
-            android:hint="Nhập mật khẩu"
+            android:ems="10"
             android:fontFamily="@font/poppins_regular"
+            android:hint="@string/input_pw_register"
+            android:inputType="textPassword"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:textColor="@color/black"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textPass" />
+
         <EditText
             android:id="@+id/rePasswordRegis"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:ems="10"
-            android:textSize="16dp"
-            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
             android:background="@drawable/custom_edittext"
-            android:padding="10dp"
-            android:hint="Nhập lại mật khẩu"
+            android:ems="10"
             android:fontFamily="@font/poppins_regular"
+            android:hint="@string/reinput_pw_register"
+            android:inputType="textPassword"
+            android:padding="10dp"
             android:textColor="@color/black"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/passwordRegis" />
 
         <TextView
             android:id="@+id/textGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Giới tính"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_bold"/>
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/sex_register"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@+id/passwordRegis" />
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/textGender">
+
             <RadioButton
                 android:id="@+id/radio_a"
-                android:text="Nam"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/poppins_regular"
-                />
+                android:text="@string/male_register" />
 
             <RadioButton
                 android:id="@+id/radio_b"
-                android:text="Nữ"
-                android:checked="true"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/poppins_regular"/>
+                android:checked="true"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/female_register" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/textBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ngày sinh"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_bold"/>
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/DoB_register"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textGender" />
 
-        <EditText
-            android:id="@+id/birthRegis"
+
+        <Button
+            android:id="@+id/btnChooseDate"
+            style="?android:spinnerStyle"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:textSize="16dp"
-            android:inputType="datetime"
-            android:background="@drawable/custom_edittext"
-            android:padding="10dp"
-            android:hint="Nhập ngày sinh"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_regular"
+            android:padding="10dp"
+            android:text="@string/hint_DoB_register"
             android:textColor="@color/black"
-            android:layout_marginBottom="20dp"
-            />
-
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textBirth" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@color/text_blue"
-            android:text="Đăng ký"
             android:fontFamily="@font/poppins_regular"
-            app:cornerRadius="10dp"/>
+            android:text="@string/register"
+            app:cornerRadius="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnChooseDate" />
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/button">
 
             <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Bạn đã có tài khoản?"
+                android:text="@string/text_to_login_register"
                 android:textColor="@color/black"
-                android:layout_marginRight="5dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textForwardLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Đăng nhập"
+                android:text="@string/btn_login_register"
                 android:textColor="@color/text_blue"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

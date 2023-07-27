@@ -2,7 +2,6 @@ package com.main.newyeti;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +32,7 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.btnLogin);
         signup = findViewById(R.id.textForwardRegis);
 
-        email = findViewById(R.id.emailLogin);
+        email = findViewById(R.id.usernameLogin);
         password = findViewById(R.id.passwordLogin);
 
         login.setOnClickListener(view -> {
