@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".ListFriends">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,65 +16,41 @@
             android:layout_height="55dp"
             android:orientation="horizontal"
             android:background="@color/bg_color"
-            android:gravity="center_vertical"
-            android:paddingStart="150dp">
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:paddingTop="3dp">
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Nhắn tin"
-                android:gravity="center"
+                android:text="Bạn bè"
+                android:textSize="20dp"
                 android:textColor="@color/white"
-                android:layout_marginRight="120dp"
-                android:textSize="20sp" />
+                android:fontFamily="@font/poppins_bold"/>
 
             <Button
-                android:id="@+id/notification"
+                android:id="@+id/searchList"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:gravity="right"
                 android:backgroundTint="@color/bg_color"
-                android:drawableTop="@drawable/notifications_icon"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:gravity="center">
-
-            <EditText
-                android:id="@+id/search"
-                android:layout_width="380dp"
-                android:layout_height="45dp"
-                android:ems="10"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="16sp"
-                android:inputType="text"
-                android:drawableStart="@drawable/search_icon"
-                android:hint="  Tìm kiếm"
-                android:background="@drawable/custom_search"
-                android:paddingStart="10dp"/>
-
+                android:text="s"
+                android:textColor="@color/bg_color"
+                android:drawableLeft="@drawable/add_icon" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.815"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:background="@color/white">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listChatView"
+                android:id="@+id/listFriendsView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -89,22 +66,22 @@
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:padding="0dp"
-                android:drawableTop="@drawable/chat_icon_focus"
+                android:drawableTop="@drawable/chat_icon"
                 android:backgroundTint="@color/white"
                 android:text="Nhắn tin"
-                android:textColor="@color/black"
-                android:layout_marginEnd="50dp"/>
+                android:textColor="@color/bg_icon"
+                android:layout_marginRight="50dp"/>
 
             <Button
                 android:id="@+id/listFriends"
                 android:layout_width="70dp"
                 android:layout_height="65dp"
                 android:padding="0dp"
-                android:drawableTop="@drawable/person_icon"
+                android:drawableTop="@drawable/person_icon_focus"
                 android:backgroundTint="@color/white"
                 android:text="Bạn bè"
-                android:textColor="@color/bg_icon"
-                android:layout_marginEnd="50dp"/>
+                android:textColor="@color/black"
+                android:layout_marginRight="50dp"/>
 
             <Button
                 android:id="@+id/setting"
@@ -118,4 +95,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
