@@ -8,9 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.main.newyeti.model.ChatAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView listChatView;
-    private RecyclerView.Adapter listChatAdapter;
+    private RecyclerView chatView;
+    private ChatAdapter chatAdapter;
     private Button listChats, listFriends, setting;
 
     @Override
@@ -35,7 +40,24 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
-        listChatView = findViewById(R.id.listChatView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL, false);
+        chatView = findViewById(R.id.listChatView);
+        chatAdapter = new ChatAdapter(this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        chatView.setLayoutManager(linearLayoutManager);
+        chatAdapter.setListChat(getListChat());
+        chatView.setAdapter(chatAdapter);
+
+    }
+
+    private List<Chat> getListChat(){
+        List<Chat> list = new ArrayList<>();
+        list.add(new Chat(R.drawable.avatar, "User name 1", "Hello!"));
+        list.add(new Chat(R.drawable.avatar, "User name 2", "Hello!"));
+        list.add(new Chat(R.drawable.avatar, "User name 3", "Hello!"));
+        list.add(new Chat(R.drawable.avatar, "User name 4", "Hello!"));
+        list.add(new Chat(R.drawable.avatar, "User name 5", "Hello!"));
+        list.add(new Chat(R.drawable.avatar, "User name 6", "Hello!"));
+        return list;
     }
 }

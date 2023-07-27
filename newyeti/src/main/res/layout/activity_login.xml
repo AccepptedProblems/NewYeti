@@ -81,16 +81,16 @@
                 android:textColor="@color/text_blue"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="20dp"/>
 
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:backgroundTint="@color/text_blue"
-                android:text="Đăng nhập"
                 android:fontFamily="@font/poppins_bold"
-                app:cornerRadius="10dp"/>
+                android:text="Đăng nhập"
+                app:cornerRadius="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,10 +112,10 @@
 
                 <TextView
                     android:id="@+id/textForwardRegis"
-                    android:layout_width="104dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Đăng ký ngay"
+                    android:text="Đăng ký"
                     android:textColor="@color/text_blue"
                     android:textSize="14sp" />
 

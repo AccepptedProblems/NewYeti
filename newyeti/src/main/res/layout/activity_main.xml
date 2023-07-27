@@ -15,9 +15,8 @@
             android:layout_height="55dp"
             android:orientation="horizontal"
             android:background="@color/bg_color"
-            android:gravity="center"
-            android:paddingEnd="20dp"
-            android:paddingTop="3dp">
+            android:gravity="center_vertical"
+            android:paddingStart="150dp">
 
             <TextView
                 android:id="@+id/textView"
@@ -25,8 +24,19 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Nhắn tin"
+                android:gravity="center"
                 android:textColor="@color/white"
+                android:layout_marginRight="120dp"
                 android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/notification"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right"
+                android:backgroundTint="@color/bg_color"
+                android:drawableTop="@drawable/notifications_icon"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -62,8 +72,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listChatView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/chat_item"/>
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
