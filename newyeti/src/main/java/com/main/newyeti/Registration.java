@@ -21,6 +21,10 @@ import com.main.newyeti.api.ApiService;
 import com.main.newyeti.model.Token;
 import com.main.newyeti.model.User;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +33,8 @@ public class Registration extends AppCompatActivity {
     private TextView login;
     private EditText nameRegis, emailRegis, passwordRegis, rePasswordRegis;
     private RadioButton radioMale, radioFemale;
-    private Button btnChooseDate, regis;
+    private Button btnChooseDate;
+    private Button regis;
     private DatePickerDialog datePickerDialog;
 
     @Override
@@ -59,12 +64,29 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email = emailRegis.getText().toString();
+                String username = email.substring(0, email.indexOf("@"));
                 String password = passwordRegis.getText().toString();
                 String name = nameRegis.getText().toString();
                 String gender = "";
+
                 if (radioMale.isChecked()) {
                     gender = "MALE";
                 } else gender = "FEMALE";
+
+                String dateOfBirthString = btnChooseDate.getText().toString();
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                Date dateOfBirth;
+
+                try {
+                    dateOfBirth = format.parse(dateOfBirthString);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+
+                User user = new User(username, password, email, name, gender, dateOfBirth);
+
+                register(user);
+
             }
         });
 
@@ -74,23 +96,23 @@ public class Registration extends AppCompatActivity {
 
     private void register(User user) {
 
-        ApiService.apiService.login(user).enqueue(new Callback<Token>() {
+        ApiService.apiService.register(user).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Toast.makeText(Registration.this, response.body().getApiKey(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registration.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Registration.this, Login.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    Toast.makeText(Registration.this, "Login Failed s", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registration.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Token> call, Throwable t) {
-                Toast.makeText(Registration.this, "Login Failed", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(Registration.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());
             }
         });

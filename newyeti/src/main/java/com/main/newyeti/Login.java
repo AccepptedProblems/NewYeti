@@ -59,13 +59,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Toast.makeText(Login.this, response.body().getApiKey(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    Toast.makeText(Login.this, "Login Failed s", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
