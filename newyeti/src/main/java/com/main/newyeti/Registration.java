@@ -10,11 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.api.ApiService;
@@ -39,11 +37,11 @@ public class Registration extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         login = findViewById(R.id.textForwardLogin);
-        regis = findViewById(R.id.regis);
+        regis = findViewById(R.id.btnRegis);
         btnChooseDate = findViewById(R.id.btnChooseDate);
-        nameRegis = findViewById(R.id.nameRegis);
-        emailRegis = findViewById(R.id.emailRegis);
-        passwordRegis = findViewById(R.id.passwordRegis);
+        nameRegis = findViewById(R.id.etNameRegis);
+        emailRegis = findViewById(R.id.etEmailRegis);
+        passwordRegis = findViewById(R.id.etPasswordRegis);
         rePasswordRegis = findViewById(R.id.rePasswordRegis);
         radioMale = findViewById(R.id.radioMale);
         radioFemale = findViewById(R.id.radioFemale);

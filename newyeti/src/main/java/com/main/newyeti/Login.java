@@ -31,10 +31,10 @@ public class Login extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         login = findViewById(R.id.btnLogin);
-        signup = findViewById(R.id.textForwardRegis);
+        signup = findViewById(R.id.tvRegis);
 
-        email = findViewById(R.id.usernameLogin);
-        password = findViewById(R.id.passwordLogin);
+        email = findViewById(R.id.etEmail);
+        password = findViewById(R.id.etPassword);
 
         login.setOnClickListener(view -> {
             login();
