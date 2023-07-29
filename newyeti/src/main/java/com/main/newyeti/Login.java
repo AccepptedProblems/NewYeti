@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.api.ApiService;
+import com.main.newyeti.model.Token;
 import com.main.newyeti.model.User;
 
 import retrofit2.Call;
@@ -37,9 +38,8 @@ public class Login extends AppCompatActivity {
 
         login.setOnClickListener(view -> {
             login();
-            Intent intent = new Intent(Login.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+
+
         });
 
         signup.setOnClickListener(view -> {
@@ -55,21 +55,23 @@ public class Login extends AppCompatActivity {
         String passwordText = password.getText().toString();
         Log.e("Login", "login: " + emailText + " " + passwordText);
 
-        ApiService.apiService.login(new User(emailText, passwordText)).enqueue(new Callback<User>() {
+        ApiService.apiService.login(new User(emailText, passwordText)).enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Token> call, Response<Token> response) {
                 if (response.body() != null && response.isSuccessful()) {
-//                    User user = response.body();
-                    Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, response.body().getApiKey(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 } else {
-                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Login Failed s", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-//                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Token> call, Throwable t) {
+                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());
             }
         });
