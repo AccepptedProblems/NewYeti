@@ -2,6 +2,7 @@ package com.main.newyeti.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.main.newyeti.model.Token;
 import com.main.newyeti.model.User;
 
 import retrofit2.Call;
@@ -20,6 +21,9 @@ public interface ApiService {
             .build().create(ApiService.class);
 
     @POST("v1/api/user/login")
-    Call<User> login(@Body User user);
+    Call<Token> login(@Body User user);
+
+    @POST("v1/api/user/register")
+    Call<User> register(@Body User user);
 
 }
