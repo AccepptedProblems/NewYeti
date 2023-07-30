@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MessageActivity">
+
+    <ImageView
+        android:id="@+id/ivBkg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/bg_color"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/arrowBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/bg_color"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
+        app:layout_constraintStart_toStartOf="@id/ivBkg"
+        app:layout_constraintTop_toTopOf="@id/ivBkg" />
+
+    <ImageButton
+        android:id="@+id/avt"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/person_blue_icon"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
+        app:layout_constraintStart_toEndOf="@id/arrowBack"
+        app:layout_constraintTop_toTopOf="@id/ivBkg" />
+
+    <TextView
+        android:id="@+id/tvUsernameInChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Changhoochin"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
+        app:layout_constraintStart_toEndOf="@id/avt"
+        app:layout_constraintTop_toTopOf="@id/ivBkg" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/ivBkg2"
+        app:layout_constraintTop_toBottomOf="@id/ivBkg">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+
+    <ImageView
+        android:id="@+id/ivBkg2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/bg_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.09" />
+
+    <ImageButton
+        android:id="@+id/addIcon"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/bg_color"
+        android:paddingEnd="10dp"
+        android:src="@drawable/ic_add_friend"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg2"
+        app:layout_constraintStart_toStartOf="@id/ivBkg2"
+        app:layout_constraintTop_toTopOf="@id/ivBkg2" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/hint_message"
+        android:inputType="text"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg2"
+        app:layout_constraintStart_toEndOf="@id/addIcon"
+        app:layout_constraintTop_toTopOf="@id/ivBkg2"
+        app:layout_constraintWidth_percent="0.8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

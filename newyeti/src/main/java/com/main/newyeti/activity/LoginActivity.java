@@ -1,4 +1,4 @@
-package com.main.newyeti;
+package com.main.newyeti.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.main.newyeti.R;
 import com.main.newyeti.api.ApiService;
 import com.main.newyeti.model.Token;
 import com.main.newyeti.model.User;
@@ -18,11 +19,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private Button login;
     private TextView signup;
     private EditText email, password;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,10 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
 
-        login.setOnClickListener(view -> {
-            login();
-
-
-        });
+        login.setOnClickListener(view -> login());
 
         signup.setOnClickListener(view -> {
-            Intent intent = new Intent(Login.this, Registration.class);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
             finish();
         });
@@ -59,19 +55,19 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
-                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());
             }
         });

@@ -1,4 +1,4 @@
-package com.main.newyeti.model;
+package com.main.newyeti.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,15 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.main.newyeti.Chat;
 import com.main.newyeti.R;
+import com.main.newyeti.model.User;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
-
     private Context mContext;
     private List<User> listUser;
 
@@ -33,7 +32,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
         return new UserAdapter.UserViewHolder(view);
     }
 
@@ -50,7 +49,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public int getItemCount() {
-        if(listUser != null) {
+        if (listUser != null) {
             return listUser.size();
         }
 
@@ -58,7 +57,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
-
         private CircleImageView resourceAvt;
         private TextView nameUser;
 
@@ -66,7 +64,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             super(itemView);
 
             resourceAvt = itemView.findViewById(R.id.avtUser);
-            nameUser = itemView.findViewById(R.id.nameUser);
+            nameUser = itemView.findViewById(R.id.tvUsername);
         }
 
     }

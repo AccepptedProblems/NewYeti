@@ -1,4 +1,4 @@
-package com.main.newyeti;
+package com.main.newyeti.activity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -15,8 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.main.newyeti.R;
 import com.main.newyeti.api.ApiService;
-import com.main.newyeti.model.Token;
 import com.main.newyeti.model.User;
 
 import java.text.ParseException;
@@ -27,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Registration extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private TextView login;
     private EditText nameRegis, emailRegis, passwordRegis, rePasswordRegis;
     private RadioButton radioMale, radioFemale;
@@ -41,7 +40,7 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
-        login = findViewById(R.id.textForwardLogin);
+        login = findViewById(R.id.tvLogin);
         regis = findViewById(R.id.btnRegis);
         btnChooseDate = findViewById(R.id.btnChooseDate);
         nameRegis = findViewById(R.id.etNameRegis);
@@ -53,43 +52,40 @@ public class Registration extends AppCompatActivity {
 
 
         login.setOnClickListener(view -> {
-            Intent intent = new Intent(Registration.this, Login.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         });
 
-        regis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailRegis.getText().toString();
-                String username = email.substring(0, email.indexOf("@"));
-                String password = passwordRegis.getText().toString();
-                String name = nameRegis.getText().toString();
-                String gender = "";
+        regis.setOnClickListener(v -> {
+            String email = emailRegis.getText().toString();
+            String username = email.substring(0, email.indexOf("@"));
+            String password = passwordRegis.getText().toString();
+            String name = nameRegis.getText().toString();
+            String gender = "";
 
-                if (radioMale.isChecked()) {
-                    gender = "MALE";
-                } else gender = "FEMALE";
+            if (radioMale.isChecked()) {
+                gender = "MALE";
+            } else gender = "FEMALE";
 
-                String dateOfBirthString = btnChooseDate.getText().toString();
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                Date dateOfBirth;
+            String dateOfBirthString = btnChooseDate.getText().toString();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateOfBirth;
 
-                try {
-                    dateOfBirth = format.parse(dateOfBirthString);
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-
-                User user = new User(username, password, email, name, gender, dateOfBirth);
-
-                register(user);
-
+            try {
+                dateOfBirth = format.parse(dateOfBirthString);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
             }
+
+            User user = new User(username, password, email, name, gender, dateOfBirth);
+
+            register(user);
+
         });
 
         initDatePicker();
-        btnChooseDate.setOnClickListener(v -> openDatePicker());
+        btnChooseDate.setOnClickListener(v -> datePickerDialog.show());
     }
 
     private void register(User user) {
@@ -98,19 +94,19 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Toast.makeText(Registration.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Registration.this, Login.class);
+                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    Toast.makeText(Registration.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(Registration.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());
             }
         });
@@ -131,9 +127,5 @@ public class Registration extends AppCompatActivity {
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-    }
-
-    private void openDatePicker() {
-        datePickerDialog.show();
     }
 }

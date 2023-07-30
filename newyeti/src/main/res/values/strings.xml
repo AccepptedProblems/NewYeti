@@ -28,5 +28,23 @@
     <string name="text_to_login_register">Bạn đã có tài khoản?</string>
     <string name="register">Đăng ký</string>
 
+    <string name="menu_list_message">Nhắn tin</string>
+    <string name="menu_list_friend">Bạn bè</string>
+    <string name="menu_settings">Cài đặt</string>
+
+    <string name="hint_message">Nhập tin nhắn...</string>
+
+    <string name="title_search_friend">Thêm bạn bè</string>
+    <string name="hint_search_friend">Tìm kiếm</string>
+    <string name="cancel_search_friend">Hủy</string>
+
+    <string name="title_list_chat">Nhắn tin</string>
+
+    <string name="hint_search_chat">Tìm kiếm</string>
+
+    <string name="title_friends">Bạn bè</string>
+
+    <string name="title_setting">Cài đặt</string>
+
 
 </resources>

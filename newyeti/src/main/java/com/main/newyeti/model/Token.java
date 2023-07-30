@@ -17,8 +17,6 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token{" +
-                "apiKey='" + apiKey + '\'' +
-                '}';
+        return "Token{" + "apiKey='" + apiKey + '\'' + '}';
     }
 }
