@@ -1,4 +1,4 @@
-package com.main.newyeti.activity;
+package com.main.newyeti.activities;
 
 import android.os.Bundle;
 

@@ -15,7 +15,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 import com.main.newyeti.R;
-import com.main.newyeti.activity.LoginActivity;
+import com.main.newyeti.activities.LoginActivity;
 
 public class SettingFragment extends Fragment {
     private View view;

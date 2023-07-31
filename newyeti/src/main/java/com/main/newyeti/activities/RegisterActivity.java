@@ -1,13 +1,17 @@
-package com.main.newyeti.activity;
+package com.main.newyeti.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +31,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextView login;
+    Button regis;
+    ProgressBar progressBar;
     private EditText nameRegis, emailRegis, passwordRegis, rePasswordRegis;
-    private RadioButton radioMale, radioFemale;
+    private RadioButton radioMale;
     private Button btnChooseDate;
-    private Button regis;
     private DatePickerDialog datePickerDialog;
 
     @Override
@@ -40,16 +44,16 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
-        login = findViewById(R.id.tvLogin);
+        TextView login = findViewById(R.id.tvLogin);
         regis = findViewById(R.id.btnRegis);
+        progressBar = findViewById(R.id.progressBar);
+
         btnChooseDate = findViewById(R.id.btnChooseDate);
         nameRegis = findViewById(R.id.etNameRegis);
         emailRegis = findViewById(R.id.etEmailRegis);
         passwordRegis = findViewById(R.id.etPasswordRegis);
         rePasswordRegis = findViewById(R.id.rePasswordRegis);
         radioMale = findViewById(R.id.radioMale);
-        radioFemale = findViewById(R.id.radioFemale);
-
 
         login.setOnClickListener(view -> {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -58,30 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         regis.setOnClickListener(v -> {
-            String email = emailRegis.getText().toString();
-            String username = email.substring(0, email.indexOf("@"));
-            String password = passwordRegis.getText().toString();
-            String name = nameRegis.getText().toString();
-            String gender = "";
+            User user = checkInput();
 
-            if (radioMale.isChecked()) {
-                gender = "MALE";
-            } else gender = "FEMALE";
-
-            String dateOfBirthString = btnChooseDate.getText().toString();
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            Date dateOfBirth;
-
-            try {
-                dateOfBirth = format.parse(dateOfBirthString);
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-
-            User user = new User(username, password, email, name, gender, dateOfBirth);
-
-            register(user);
-
+            if (user != null)
+                register(user);
         });
 
         initDatePicker();
@@ -89,27 +73,86 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void register(User user) {
-
+        loading(true);
         ApiService.apiService.register(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    loading(false);
+                    showToast("Đăng ký thành công");
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
+                    loading(false);
+                    showToast("Đăng ký thất bại");
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Đăng ký lỗi", Toast.LENGTH_SHORT).show();
+                showToast("Đăng ký thất bại");
                 Log.e("Login", "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    private void loading(boolean isLoading) {
+        if (isLoading) {
+            progressBar.setVisibility(View.VISIBLE);
+            regis.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            regis.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private User checkInput() {
+        String email = emailRegis.getText().toString().trim();
+        String password = passwordRegis.getText().toString().trim();
+        String rePassword = rePasswordRegis.getText().toString().trim();
+        String name = nameRegis.getText().toString().trim();
+
+        if (name.isEmpty()) {
+            nameRegis.setError("Tên không được để trống");
+            return null;
+        } else if (email.isEmpty()) {
+            emailRegis.setError("Email không được để trống");
+            return null;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailRegis.setError("Email không hợp lệ");
+            return null;
+        } else if (password.isEmpty()) {
+            passwordRegis.setError("Mật khẩu không được để trống");
+            return null;
+        } else if (rePassword.isEmpty()) {
+            rePasswordRegis.setError("Mật khẩu không được để trống");
+            return null;
+        } else if (!password.equals(rePassword)) {
+            rePasswordRegis.setError("Mật khẩu không khớp");
+            return null;
+        } else {
+            String username = email.substring(0, email.indexOf("@"));
+            String gender = radioMale.isChecked() ? "MALE" : "FEMALE";
+
+            String dateOfBirthString = btnChooseDate.getText().toString().trim();
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateOfBirth;
+
+            try {
+                dateOfBirth = format.parse(dateOfBirthString);
+            } catch (ParseException e) {
+                Log.e("Register", "checkInput: " + e.getMessage());
+                throw new RuntimeException(e);
+            }
+            return new User(username, password, email, name, gender, dateOfBirth);
+        }
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void initDatePicker() {

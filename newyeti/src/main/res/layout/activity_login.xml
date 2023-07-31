@@ -2,7 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:overScrollMode="never"
+    android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,7 +41,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/title_login"
-            android:textSize="36sp"
+            android:textSize="@dimen/_28ssp"
             app:layout_constraintBottom_toBottomOf="@id/ivBkg"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="@id/ivBkg"
@@ -50,25 +53,25 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/describe_login"
-            android:textSize="16sp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/_37sdp"
             android:layout_marginTop="@dimen/_40sdp"
-            android:autofillHints=""
             android:background="@drawable/custom_edittext"
             android:ems="10"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/hint_username_login"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:paddingStart="@dimen/_12sdp"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/tvDescription"
             app:layout_constraintWidth_percent="0.8" />
@@ -76,18 +79,17 @@
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:autofillHints="1234"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/custom_edittext"
             android:ems="10"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/hint_pw_login"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
+            android:paddingStart="@dimen/_12sdp"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/etEmail"
@@ -97,57 +99,70 @@
             android:id="@+id/tvForgotPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/forgot_pw_login"
             android:textColor="@color/text_blue"
-            android:textSize="16sp"
+            android:textSize="@dimen/_10ssp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-        <Button
-            android:id="@+id/btnLogin"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_30sdp"
-            android:backgroundTint="@color/text_blue"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/btn_login"
-            app:cornerRadius="10dp"
+            android:animateLayoutChanges="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvForgotPass"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintWidth_percent="0.7">
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/text_blue"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/btn_login"
+                app:cornerRadius="10dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40sdp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin">
+            app:layout_constraintTop_toBottomOf="@id/frameLayout">
 
             <TextView
                 android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/text_to_register_login"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/tvRegis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/btn_register"
                 android:textColor="@color/text_blue"
-                android:textSize="14sp" />
+                android:textSize="@dimen/_11ssp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

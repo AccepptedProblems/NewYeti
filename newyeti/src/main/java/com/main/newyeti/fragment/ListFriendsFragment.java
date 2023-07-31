@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
-import com.main.newyeti.activity.SearchFriendActivity;
+import com.main.newyeti.activities.SearchFriendActivity;
 import com.main.newyeti.adapter.UserAdapter;
 import com.main.newyeti.model.User;
 
