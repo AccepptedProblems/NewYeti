@@ -24,11 +24,10 @@
         app:layout_constraintStart_toStartOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
-    <ImageButton
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avt"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:backgroundTint="@color/white"
         android:src="@drawable/person_blue_icon"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg"
         app:layout_constraintStart_toEndOf="@id/arrowBack"

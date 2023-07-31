@@ -19,8 +19,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.R;
-import com.main.newyeti.api.ApiService;
 import com.main.newyeti.model.User;
+import com.main.newyeti.utilities.ApiService;
+import com.main.newyeti.utilities.DataLocalManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,6 +81,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.body() != null && response.isSuccessful()) {
                     loading(false);
                     showToast("Đăng ký thành công");
+
+                    DataLocalManager.setMyEmail(response.body().getEmail());
+                    DataLocalManager.setMyPassword(response.body().getPassword());
+
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();

@@ -14,9 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.R;
-import com.main.newyeti.api.ApiService;
-import com.main.newyeti.model.Token;
+import com.main.newyeti.model.LoginResp;
 import com.main.newyeti.model.User;
+import com.main.newyeti.utilities.ApiService;
+import com.main.newyeti.utilities.DataLocalManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
 
+        if (!DataLocalManager.getMyEmail().equals("") && !DataLocalManager.getMyPassword().equals("")) {
+            email.setText(DataLocalManager.getMyEmail());
+            password.setText(DataLocalManager.getMyPassword());
+        }
+
         progressBar = findViewById(R.id.progressBar);
 
         login.setOnClickListener(view -> {
@@ -58,12 +64,25 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(User user) {
         loading(true);
-        ApiService.apiService.login(user).enqueue(new Callback<Token>() {
+        ApiService.apiService.login(user).enqueue(new Callback<LoginResp>() {
             @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
+            public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
                 loading(false);
                 if (response.body() != null && response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                    // Lấy apiKey, userId để lưu vào shared preferences
+                    String apiKey = response.body().getApiKey();
+                    User res = response.body().getUser();
+
+                    // Lưu vào shared preferences
+                    DataLocalManager.setApiKey(apiKey);
+                    DataLocalManager.setMyUserId(res.getId());
+                    DataLocalManager.setMyName(res.getDisplayName());
+                    DataLocalManager.setMyEmail(res.getEmail());
+                    DataLocalManager.setMyPassword(res.getPassword());
+
+                    //Tạo Intent để truyền dữ liệu sang Main
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -73,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Token> call, Throwable t) {
+            public void onFailure(Call<LoginResp> call, Throwable t) {
                 loading(false);
                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());

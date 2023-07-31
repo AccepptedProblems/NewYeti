@@ -1,6 +1,7 @@
 package com.main.newyeti.fragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,15 +12,17 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.main.newyeti.R;
 import com.main.newyeti.activities.LoginActivity;
+import com.main.newyeti.utilities.DataLocalManager;
 
 public class SettingFragment extends Fragment {
+    private static Context context;
     private View view;
-    private Button info, logout;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -41,8 +44,15 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-        info = view.findViewById(R.id.info);
-        logout = view.findViewById(R.id.logout);
+        Button info = view.findViewById(R.id.info);
+        Button logout = view.findViewById(R.id.logout);
+        TextView textNameSetting = view.findViewById(R.id.textNameSetting);
+        TextView textUserNameSetting = view.findViewById(R.id.textUserNameSetting);
+
+        textNameSetting.setText(DataLocalManager.getMyName());
+        String email = DataLocalManager.getMyEmail();
+        String username = "@" + email.substring(0, email.indexOf("@"));
+        textUserNameSetting.setText(username);
 
         logout.setOnClickListener(v -> openLogoutDialog());
 
@@ -71,6 +81,9 @@ public class SettingFragment extends Fragment {
         cancelBtn.setOnClickListener(v -> dialog.dismiss());
 
         logoutBtn.setOnClickListener(v -> {
+            // Xóa Auth Token
+            DataLocalManager.setApiKey("");
+            DataLocalManager.setMyUserId("");
             Intent intent = new Intent(view.getContext(), LoginActivity.class);
             startActivity(intent);
             // finish activity
