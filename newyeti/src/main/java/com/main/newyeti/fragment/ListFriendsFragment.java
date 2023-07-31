@@ -1,27 +1,42 @@
 package com.main.newyeti.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.main.newyeti.DataLocalManager;
 import com.main.newyeti.R;
+import com.main.newyeti.activity.LoginActivity;
+import com.main.newyeti.activity.MainActivity;
 import com.main.newyeti.activity.SearchFriendActivity;
 import com.main.newyeti.adapter.UserAdapter;
+import com.main.newyeti.api.ApiService;
+import com.main.newyeti.model.Friend;
+import com.main.newyeti.model.LoginResp;
 import com.main.newyeti.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ListFriendsFragment extends Fragment {
     UserAdapter userAdapter;
     private View view;
+
+    private Context context;
     private RecyclerView userView;
 
     public ListFriendsFragment() {
@@ -63,9 +78,26 @@ public class ListFriendsFragment extends Fragment {
 
     private List<User> getListUser() {
         List<User> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(new User(R.drawable.avatar, "User name " + i));
-        }
+
+        String id = DataLocalManager.getMyUserId();
+        ApiService.apiService.getListFriends(id).enqueue(new Callback<List<Friend>>() {
+            @Override
+            public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
+                if (response.body() != null && response.isSuccessful()) {
+                    List<Friend> friendLists = response.body();
+                    for (Friend friend : friendLists) {
+                        list.add(new User(R.drawable.avatar, friend.getUser().getUsername()));
+                    }
+                } else {
+                    list.add(new User(R.drawable.avatar, "Lỗi"));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Friend>> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
         return list;
     }
 }

@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.main.newyeti.DataLocalManager;
 import com.main.newyeti.R;
+import com.main.newyeti.activity.MainActivity;
 import com.main.newyeti.adapter.ListChatAdapter;
 import com.main.newyeti.model.Chat;
 
@@ -19,6 +21,7 @@ import java.util.List;
 public class ListChatFragment extends Fragment {
     private View view;
     private RecyclerView rvListChat;
+    private MainActivity mainActivity;
 
     public ListChatFragment() {
         // Required empty public constructor
@@ -39,9 +42,10 @@ public class ListChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_list_chat, container, false);
+        mainActivity = (MainActivity) getActivity();
 
         List<Chat> listChat = new ArrayList<>();
-        listChat.add(new Chat(R.drawable.avatar, "bóng", "Anh có thích đá bóng không??"));
+        listChat.add(new Chat(R.drawable.avatar, "bóng", "bla bla..."));
         listChat.add(new Chat(R.drawable.avatar, "Changmincutedayy", "Hứ"));
         listChat.add(new Chat(R.drawable.avatar, "Xì trum", "Khò khò"));
 
@@ -51,4 +55,5 @@ public class ListChatFragment extends Fragment {
         rvListChat.setAdapter(new ListChatAdapter(getContext(), listChat));
         return view;
     }
+
 }

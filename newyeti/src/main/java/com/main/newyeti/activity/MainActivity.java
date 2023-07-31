@@ -1,23 +1,31 @@
 package com.main.newyeti.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.main.newyeti.DataLocalManager;
 import com.main.newyeti.R;
 import com.main.newyeti.adapter.ViewpagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ViewPager2 viewPager2;
+    private String apiKey ="hihi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        if (DataLocalManager.getApiKey() == "") {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         viewPager2 = findViewById(R.id.viewPager);
         bottomNavigationView = findViewById(R.id.bottomNav);
@@ -52,5 +60,9 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    public String getApiKey() {
+        return apiKey;
     }
 }

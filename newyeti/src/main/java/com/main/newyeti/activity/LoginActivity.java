@@ -10,10 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.main.newyeti.DataLocalManager;
 import com.main.newyeti.R;
 import com.main.newyeti.api.ApiService;
-import com.main.newyeti.model.Token;
+import com.main.newyeti.model.LoginResp;
 import com.main.newyeti.model.User;
+
+import java.util.LinkedHashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,11 +54,18 @@ public class LoginActivity extends AppCompatActivity {
         String passwordText = password.getText().toString();
         Log.e("Login", "login: " + emailText + " " + passwordText);
 
-        ApiService.apiService.login(new User(emailText, passwordText)).enqueue(new Callback<Token>() {
+        ApiService.apiService.login(new User(emailText, passwordText)).enqueue(new Callback<LoginResp>() {
             @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
+            public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
                 if (response.body() != null && response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    // Lấy apiKey, userId để lưu vào shared preferences
+                    String apiKey = response.body().getApiKey();
+                    String userId = response.body().getUser().getId();
+                    // Lưu vào shared preferences
+                    DataLocalManager.setApiKey(apiKey);
+                    DataLocalManager.setMyUserId(userId);
+                    //Tạo Intent để truyền dữ liệu sang Main
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -66,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Token> call, Throwable t) {
+            public void onFailure(Call<LoginResp> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());
             }

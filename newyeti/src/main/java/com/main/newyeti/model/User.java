@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class User {
     private int resourceAvt;
+    private String id;
     private String username;
     private String password;
     private String email;
@@ -11,6 +12,8 @@ public class User {
     private String gender;
     private Date dayOfBirth;
 
+    public User() {
+    }
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -30,12 +33,29 @@ public class User {
         this.dayOfBirth = dayOfBirth;
     }
 
+    public User(String id, String username, String password, String email, String displayName, String gender, Date dayOfBirth) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.displayName = displayName;
+        this.gender = gender;
+        this.dayOfBirth = dayOfBirth;
+    }
+
     public int getResourceAvt() {
         return resourceAvt;
     }
 
     public void setResourceAvt(int resourceAvt) {
         this.resourceAvt = resourceAvt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
