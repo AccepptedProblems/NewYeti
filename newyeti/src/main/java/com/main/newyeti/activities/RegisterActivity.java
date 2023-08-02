@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.R;
@@ -77,28 +78,30 @@ public class RegisterActivity extends AppCompatActivity {
         loading(true);
         ApiService.apiService.register(user).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                loading(false);
+
                 if (response.body() != null && response.isSuccessful()) {
-                    loading(false);
                     showToast("Đăng ký thành công");
+                    Log.e("Register", "Success");
 
                     DataLocalManager.setMyEmail(response.body().getEmail());
-                    DataLocalManager.setMyPassword(response.body().getPassword());
+                    DataLocalManager.setMyPassword(passwordRegis.getText().toString());
 
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    loading(false);
                     showToast("Đăng ký thất bại");
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                loading(false);
                 showToast("Đăng ký thất bại");
-                Log.e("Login", "onFailure: " + t.getMessage());
+                Log.e("Register", "onFailure: " + t.getMessage());
             }
         });
     }
@@ -143,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
             String gender = radioMale.isChecked() ? "MALE" : "FEMALE";
 
             String dateOfBirthString = btnChooseDate.getText().toString().trim();
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date dateOfBirth;
 
             try {

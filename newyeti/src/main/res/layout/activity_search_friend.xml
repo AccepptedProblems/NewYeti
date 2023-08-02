@@ -41,47 +41,67 @@
         app:layout_constraintStart_toStartOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
-    <EditText
-        android:id="@+id/search"
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:background="@drawable/custom_search"
-        android:drawableStart="@drawable/search_icon"
-        android:ems="10"
-        android:fontFamily="@font/poppins_regular"
-        android:hint="@string/hint_search_friend"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/ivBkg"
-        app:layout_constraintWidth_percent="0.75" />
-
-    <TextView
-        android:id="@+id/cancelSearch"
-        android:layout_width="38dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="@string/cancel_search_friend"
-        android:textColor="@color/secondary"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/search"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="21"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintStart_toEndOf="@id/search" />
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/ivBkg">
 
-    <ScrollView
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="20"
+            android:background="@drawable/custom_search"
+            android:drawableStart="@drawable/search_icon"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="text"
+            android:paddingStart="@dimen/_5sdp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/cancelSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/cancel_search_friend"
+            android:textColor="@color/secondary"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search">
+        app:layout_constraintTop_toBottomOf="@id/container">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listSearchView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="invisible" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

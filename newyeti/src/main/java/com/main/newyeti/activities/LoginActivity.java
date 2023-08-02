@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.R;
@@ -40,11 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
 
-        if (!DataLocalManager.getMyEmail().equals("") && !DataLocalManager.getMyPassword().equals("")) {
-            email.setText(DataLocalManager.getMyEmail());
-            password.setText(DataLocalManager.getMyPassword());
-        }
-
         progressBar = findViewById(R.id.progressBar);
 
         login.setOnClickListener(view -> {
@@ -62,14 +58,28 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.e("Login", "onResume" + DataLocalManager.getMyEmail() + " " + DataLocalManager.getMyPassword());
+
+        if (DataLocalManager.getMyEmail() != null && DataLocalManager.getMyPassword() != null
+                && !DataLocalManager.getMyEmail().equals("") && !DataLocalManager.getMyPassword().equals("")) {
+            email.setText(DataLocalManager.getMyEmail());
+            password.setText(DataLocalManager.getMyPassword());
+        }
+    }
+
     private void login(User user) {
         loading(true);
         ApiService.apiService.login(user).enqueue(new Callback<LoginResp>() {
             @Override
-            public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
+            public void onResponse(@NonNull Call<LoginResp> call, @NonNull Response<LoginResp> response) {
                 loading(false);
                 if (response.body() != null && response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Log.e("Login", "Success" + response.body().getApiKey());
 
                     // Lấy apiKey, userId để lưu vào shared preferences
                     String apiKey = response.body().getApiKey();
@@ -88,11 +98,12 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Log.e("Login", "Failed" + response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginResp> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginResp> call, @NonNull Throwable t) {
                 loading(false);
                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "onFailure: " + t.getMessage());

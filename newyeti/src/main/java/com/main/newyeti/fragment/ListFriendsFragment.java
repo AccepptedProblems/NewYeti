@@ -3,6 +3,7 @@ package com.main.newyeti.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListFriendsFragment extends Fragment {
+    private static Context context;
     UserAdapter userAdapter;
     private View view;
-
-    private static Context context;
     private RecyclerView userView;
 
     public ListFriendsFragment() {
@@ -66,15 +66,20 @@ public class ListFriendsFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         userView.setLayoutManager(linearLayoutManager);
-        getListFriend();
-//        userAdapter.setListUser(DataLocalManager.getListUsers());
-//        userView.setAdapter(userAdapter);
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getListFriend();
+    }
+
     private void getListFriend() {
         List<User> list = new ArrayList<>();
+        Log.e("ListFriendsFragment", "getListFriend: " + DataLocalManager.getApiKey());
+
 
         String header = "Bearer " + DataLocalManager.getApiKey();
         String id = DataLocalManager.getMyUserId();
@@ -94,6 +99,7 @@ public class ListFriendsFragment extends Fragment {
                 if (list.size() > 0) {
                     userAdapter.setListUser(list);
                     userView.setAdapter(userAdapter);
+                    Toast.makeText(context, "Có " + list.size() + " bạn bè", Toast.LENGTH_SHORT).show();
                 }
             }
 

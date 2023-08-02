@@ -1,28 +1,36 @@
 package com.main.newyeti.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
+import com.main.newyeti.model.AddFriendReq;
 import com.main.newyeti.model.User;
+import com.main.newyeti.utilities.ApiService;
+import com.main.newyeti.utilities.DataLocalManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> implements Filterable {
-    private Context mContext;
+    private final Context mContext;
     private List<User> listUser;
-
     private List<User> listUserOld;
 
     public UserAdapter(Context mContext) {
@@ -50,7 +58,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
         holder.resourceAvt.setImageResource(user.getResourceAvt());
-        holder.nameUser.setText(user.getDisplayName());
+        holder.nameUser.setText(user.getEmail());
+        holder.btnAddFriend.setOnClickListener(v -> {
+            if (addFriend(DataLocalManager.getMyUserId(), user.getId()))
+                holder.btnAddFriend.setVisibility(View.GONE);
+        });
     }
 
     @Override
@@ -62,31 +74,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return 0;
     }
 
-    public class UserViewHolder extends RecyclerView.ViewHolder {
-        private CircleImageView resourceAvt;
-        private TextView nameUser;
-
-        public UserViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            resourceAvt = itemView.findViewById(R.id.avtUser);
-            nameUser = itemView.findViewById(R.id.tvUsername);
-        }
-
-    }
-
     @Override
     public Filter getFilter() {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String strSearch = constraint.toString();
-                if(strSearch.isEmpty()) {
+                if (strSearch.isEmpty()) {
                     listUser = listUserOld;
                 } else {
                     List<User> list = new ArrayList<>();
-                    for(User user : listUserOld) {
-                        if(user.getDisplayName().toLowerCase().contains(strSearch.toLowerCase())) {
+                    for (User user : listUserOld) {
+                        if (user.getDisplayName().toLowerCase().contains(strSearch.toLowerCase())) {
                             list.add(user);
                         }
                     }
@@ -106,5 +105,45 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 notifyDataSetChanged();
             }
         };
+    }
+
+    private boolean addFriend(String idUserFrom, String idUserTo) {
+        AddFriendReq addFriendReq = new AddFriendReq(idUserFrom, idUserTo);
+        final boolean[] res = {false};
+        ApiService.apiService.addFriend(DataLocalManager.getApiKey(), addFriendReq).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("AddFriend", "onResponse: " + response.body());
+                if (response.body() != null && response.isSuccessful()) {
+                    res[0] = true;
+                    Toast.makeText(mContext, "Add friend successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Add friend failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("AddFriend", "onFailure: " + t.getMessage());
+                Toast.makeText(mContext, "Add friend failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return res[0];
+    }
+
+    public class UserViewHolder extends RecyclerView.ViewHolder {
+        private final CircleImageView resourceAvt;
+        private final TextView nameUser;
+        private final ImageButton btnAddFriend;
+
+        public UserViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            resourceAvt = itemView.findViewById(R.id.avtUser);
+            nameUser = itemView.findViewById(R.id.tvUsername);
+            btnAddFriend = itemView.findViewById(R.id.ivAddFriend);
+        }
+
     }
 }
