@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".activities.MessageActivity">
 
     <ImageView
         android:id="@+id/ivBkg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/bg_color"
+        android:background="@color/primary"
         app:layout_constraintHeight_percent="0.09"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/arrowBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/bg_color"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_8sdp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg"
         app:layout_constraintStart_toStartOf="@id/ivBkg"
@@ -26,30 +27,31 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avt"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:src="@drawable/person_blue_icon"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg"
-        app:layout_constraintStart_toEndOf="@id/arrowBack"
+        app:layout_constraintEnd_toEndOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
     <TextView
         android:id="@+id/tvUsernameInChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
         android:fontFamily="@font/poppins_bold"
         android:text="Changhoochin"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="@dimen/_17ssp"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg"
-        app:layout_constraintStart_toEndOf="@id/avt"
+        app:layout_constraintEnd_toEndOf="@id/ivBkg"
+        app:layout_constraintStart_toStartOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/primary"
         app:layout_constraintBottom_toTopOf="@id/ivBkg2"
         app:layout_constraintTop_toBottomOf="@id/ivBkg">
 
@@ -64,16 +66,15 @@
         android:id="@+id/ivBkg2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/bg_color"
+        android:background="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.09" />
 
     <ImageButton
         android:id="@+id/addIcon"
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/bg_color"
-        android:paddingEnd="10dp"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
         android:src="@drawable/ic_add_friend"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg2"
         app:layout_constraintStart_toStartOf="@id/ivBkg2"

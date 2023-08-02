@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,6 +54,8 @@ public class ListChatFragment extends Fragment {
         rvListChat = view.findViewById(R.id.rvListChat);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rvListChat.setLayoutManager(linearLayoutManager);
+        rvListChat.addItemDecoration(
+                new DividerItemDecoration(view.getContext(), RecyclerView.VERTICAL));
         rvListChat.setAdapter(new ListChatAdapter(getContext(), listChat));
         return view;
     }

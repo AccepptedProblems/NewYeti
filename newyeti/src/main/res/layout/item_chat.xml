@@ -10,32 +10,30 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/avatar" />
 
-    <LinearLayout
-        android:id="@+id/container"
+    <TextView
+        android:id="@+id/tvUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/avtChat"
-        android:orientation="vertical">
+        android:fontFamily="@font/poppins_bold"
+        android:text="Changhoochin"
+        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tvUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Changhoochin"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tvMsgUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Hello!!!"
-            android:textSize="16sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvMsgUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUsername"
+        android:layout_toEndOf="@id/avtChat"
+        android:fontFamily="@font/poppins_regular"
+        android:maxLines="1"
+        android:text="Hello!!!"
+        android:textSize="10sp" />
 </RelativeLayout>
