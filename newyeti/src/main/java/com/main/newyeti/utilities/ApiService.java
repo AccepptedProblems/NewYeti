@@ -22,21 +22,21 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     String BASE_URL = "http://localhost:8081/";
-    String header = "Bearer " + DataLocalManager.getApiKey();
+//    String header = "Bearer " + DataLocalManager.getApiKey();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-    Interceptor interceptor = chain -> {
-        Request request = chain.request();
-        Request.Builder builder = request.newBuilder();
-        builder.addHeader("Authorization", header);
-        return chain.proceed(builder.build());
-    };
-
-    OkHttpClient.Builder okBuilder = new OkHttpClient.Builder().addInterceptor(interceptor);
+//
+//    Interceptor interceptor = chain -> {
+//        Request request = chain.request();
+//        Request.Builder builder = request.newBuilder();
+//        builder.addHeader("Authorization", header);
+//        return chain.proceed(builder.build());
+//    };
+//
+//    OkHttpClient.Builder okBuilder = new OkHttpClient.Builder().addInterceptor(interceptor);
 
     ApiService apiService = new Retrofit.Builder()
             .baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))
-            .client(okBuilder.build())
+//            .client(okBuilder.build())
             .build().create(ApiService.class);
 
 
@@ -51,5 +51,8 @@ public interface ApiService {
 
     @GET("v1/api/friend/{id}/list")
     Call<List<Friend>> getListFriends(@Header("Authorization") String apikey, @Path("id") String id);
+
+    @GET("v1/api/user/all")
+    Call<List<User>> getListUsers(@Header("Authorization") String apikey);
 
 }

@@ -33,6 +33,14 @@ public class User {
         this.dayOfBirth = dayOfBirth;
     }
 
+    public User(User user) {
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.displayName = user.getDisplayName();
+        this.gender = user.getGender();
+        this.dayOfBirth = user.getDayOfBirth();
+    }
+
     public User(String id, String username, String password, String email, String displayName, String gender, Date dayOfBirth) {
         this.username = username;
         this.password = password;
