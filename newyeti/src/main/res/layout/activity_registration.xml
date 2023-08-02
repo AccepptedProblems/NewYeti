@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/describe_register"
+            android:textColor="@color/secondary_text"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
@@ -236,10 +237,10 @@
                 android:id="@+id/btnRegis"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/text_blue"
-                android:fontFamily="@font/poppins_regular"
+                android:backgroundTint="@color/secondary"
+                android:fontFamily="@font/poppins_bold"
                 android:text="@string/btn_register"
-                app:cornerRadius="10dp" />
+                app:cornerRadius="15dp" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -264,7 +265,7 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/text_to_login_register"
-                android:textColor="@color/black"
+                android:textColor="@color/secondary_text"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
@@ -273,8 +274,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/btn_login_register"
-                android:textColor="@color/text_blue"
-                android:textSize="@dimen/_12ssp" />
+                android:textColor="@color/secondary"
+                android:textSize="@dimen/_11ssp" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,7 +59,7 @@
                 android:layout_width="90dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/text_blue"
+                android:backgroundTint="@color/secondary"
                 android:fontFamily="@font/poppins_bold"
                 android:padding="0dp"
                 android:text="Đăng xuất"

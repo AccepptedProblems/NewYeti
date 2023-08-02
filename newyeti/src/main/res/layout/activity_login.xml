@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_color">
+        android:background="@color/primary">
 
 
         <ImageView
@@ -88,7 +88,7 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:paddingStart="@dimen/_12sdp"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_text"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
@@ -103,7 +103,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/forgot_pw_login"
-            android:textColor="@color/text_blue"
+            android:textColor="@color/secondary"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/etPassword" />
@@ -125,7 +125,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/text_blue"
+                android:backgroundTint="@color/secondary"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/btn_login"
                 app:cornerRadius="10dp" />
@@ -152,7 +152,6 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/text_to_register_login"
-                android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
@@ -161,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/btn_register"
-                android:textColor="@color/text_blue"
+                android:textColor="@color/secondary"
                 android:textSize="@dimen/_11ssp" />
         </LinearLayout>
 

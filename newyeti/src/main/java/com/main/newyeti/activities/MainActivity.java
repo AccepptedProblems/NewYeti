@@ -16,7 +16,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ViewPager2 viewPager2;
-    private String apiKey = "hihi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +62,5 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-    }
-
-    public String getApiKey() {
-        return apiKey;
     }
 }
