@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.main.newyeti.R;
 import com.main.newyeti.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> implements Filterable {
     private Context mContext;
     private List<User> listUser;
+
+    private List<User> listUserOld;
 
     public UserAdapter(Context mContext) {
         this.mContext = mContext;
@@ -26,6 +31,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public void setListUser(List<User> listUser) {
         this.listUser = listUser;
+        this.listUserOld = listUser;
         notifyDataSetChanged();
     }
 
@@ -44,7 +50,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
         holder.resourceAvt.setImageResource(user.getResourceAvt());
-        holder.nameUser.setText(user.getUsername());
+        holder.nameUser.setText(user.getDisplayName());
     }
 
     @Override
@@ -67,5 +73,38 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             nameUser = itemView.findViewById(R.id.tvUsername);
         }
 
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String strSearch = constraint.toString();
+                if(strSearch.isEmpty()) {
+                    listUser = listUserOld;
+                } else {
+                    List<User> list = new ArrayList<>();
+                    for(User user : listUserOld) {
+                        if(user.getDisplayName().toLowerCase().contains(strSearch.toLowerCase())) {
+                            list.add(user);
+                        }
+                    }
+
+                    listUser = list;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listUser;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                listUser = (List<User>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

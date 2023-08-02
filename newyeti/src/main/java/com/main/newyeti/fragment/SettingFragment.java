@@ -51,7 +51,10 @@ public class SettingFragment extends Fragment {
 
         textNameSetting.setText(DataLocalManager.getMyName());
         String email = DataLocalManager.getMyEmail();
-        String username = "@" + email.substring(0, email.indexOf("@"));
+        String username = "";
+        if (email != null && email.contains("@")) {
+            username = "@" + email.substring(0, email.indexOf("@"));
+        }
         textUserNameSetting.setText(username);
 
         logout.setOnClickListener(v -> openLogoutDialog());

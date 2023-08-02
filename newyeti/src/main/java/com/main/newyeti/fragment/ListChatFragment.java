@@ -13,6 +13,7 @@ import com.main.newyeti.R;
 import com.main.newyeti.activities.MainActivity;
 import com.main.newyeti.adapter.ListChatAdapter;
 import com.main.newyeti.model.Chat;
+import com.main.newyeti.utilities.DataLocalManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ListChatFragment extends Fragment {
         List<Chat> listChat = new ArrayList<>();
         listChat.add(new Chat(R.drawable.avatar, "bóng", ":>>"));
         listChat.add(new Chat(R.drawable.avatar, "Xì trum", "Khò khò"));
-        listChat.add(new Chat(R.drawable.avatar, "Siệu nhân gao", "Đã xem lúc 12:00"));
+        listChat.add(new Chat(R.drawable.avatar, "Siêu nhân gao", "Đã xem lúc 12:00"));
         listChat.add(new Chat(R.drawable.avatar, "Mark Zuckerberg", "Người này hiện không có mặt trên Messenger"));
 
 

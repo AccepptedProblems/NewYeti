@@ -32,7 +32,7 @@ public class ListFriendsFragment extends Fragment {
     UserAdapter userAdapter;
     private View view;
 
-    private Context context;
+    private static Context context;
     private RecyclerView userView;
 
     public ListFriendsFragment() {
@@ -66,13 +66,14 @@ public class ListFriendsFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         userView.setLayoutManager(linearLayoutManager);
-        userAdapter.setListUser(getListUser());
-        userView.setAdapter(userAdapter);
+        getListFriend();
+//        userAdapter.setListUser(DataLocalManager.getListUsers());
+//        userView.setAdapter(userAdapter);
 
         return view;
     }
 
-    private List<User> getListUser() {
+    private void getListFriend() {
         List<User> list = new ArrayList<>();
 
         String header = "Bearer " + DataLocalManager.getApiKey();
@@ -83,10 +84,16 @@ public class ListFriendsFragment extends Fragment {
                 if (response.body() != null && response.isSuccessful()) {
                     List<Friend> friendLists = response.body();
                     for (Friend friend : friendLists) {
-                        list.add(new User(R.drawable.avatar, friend.getUser().getUsername()));
+                        User user = new User(friend.getUser());
+                        user.setResourceAvt(R.drawable.avatar);
+                        list.add(user);
                     }
                 } else {
                     list.add(new User(R.drawable.avatar, "Lỗi"));
+                }
+                if (list.size() > 0) {
+                    userAdapter.setListUser(list);
+                    userView.setAdapter(userAdapter);
                 }
             }
 
@@ -95,6 +102,5 @@ public class ListFriendsFragment extends Fragment {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        return list;
     }
 }
