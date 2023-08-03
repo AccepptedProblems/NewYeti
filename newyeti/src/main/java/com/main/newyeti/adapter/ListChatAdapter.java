@@ -1,6 +1,7 @@
 package com.main.newyeti.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
+import com.main.newyeti.activities.MessageActivity;
 import com.main.newyeti.model.Chat;
+import com.main.newyeti.utilities.DataLocalManager;
 
 import java.util.List;
 
@@ -46,6 +49,12 @@ public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.ChatVi
         holder.avtChat.setImageResource(chat.getResourceImg());
         holder.nameUser.setText(chat.getNameUser());
         holder.msgUser.setText(chat.getMsg());
+
+        holder.itemChat.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, MessageActivity.class);
+            intent.putExtra(DataLocalManager.KEY_NAME_RECEIVER_USER, chat.getNameUser());
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
@@ -56,12 +65,16 @@ public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.ChatVi
         return 0;
     }
 
-    public class ChatViewHolder extends RecyclerView.ViewHolder {
-        private CircleImageView avtChat;
-        private TextView nameUser, msgUser;
+    public static class ChatViewHolder extends RecyclerView.ViewHolder {
+        private final View itemChat;
+        private final CircleImageView avtChat;
+        private final TextView nameUser;
+        private final TextView msgUser;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            itemChat = itemView.findViewById(R.id.itemChat);
 
             avtChat = itemView.findViewById(R.id.avtChat);
             nameUser = itemView.findViewById(R.id.tvUsername);

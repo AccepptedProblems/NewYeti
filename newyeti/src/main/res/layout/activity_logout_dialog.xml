@@ -25,7 +25,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="Đăng xuất"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView6"
@@ -34,7 +34,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:text="Bạn có chắc muốn đăng xuất?"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

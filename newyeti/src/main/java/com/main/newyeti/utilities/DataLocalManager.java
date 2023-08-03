@@ -14,14 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataLocalManager {
-    private static final String API_KEY = "API_KEY";
+    public static final String KEY_ID_RECEIVER_USER = "KEY_ID_RECEIVER_USER";
+    public static final String KEY_NAME_RECEIVER_USER = "KEY_NAME_USER_TO";
     private static final String KEY_USER_ID = "KEY_USER_ID";
+    private static final String API_KEY = "API_KEY";
     private static final String KEY_NAME = "KEY_NAME";
     private static final String KEY_EMAIL = "KEY_EMAIL";
     private static final String KEY_PASSWORD = "KEY_PASSWORD";
     private static final String KEY_OBJECT_USER = "KEY_OBJECT_USER";
     private static final String KEY_LIST_OBJECT_USER = "KEY_LIST_OBJECT_USER";
-
     private static DataLocalManager instance;
     private MySharedPreferences mySharedPreferences;
 
@@ -77,12 +78,6 @@ public class DataLocalManager {
         DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_PASSWORD, password);
     }
 
-    public static void setUser(User user) {
-        Gson gson = new Gson();
-        String strJsonUser = gson.toJson(user);
-        DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_OBJECT_USER, strJsonUser);
-    }
-
     public static User getUser() {
         Gson gson = new Gson();
         String strJsonUser = DataLocalManager.getInstance().mySharedPreferences.getStringValue(KEY_OBJECT_USER);
@@ -90,11 +85,10 @@ public class DataLocalManager {
         return user;
     }
 
-    public static void setListUsers(List<User> listUsers) {
+    public static void setUser(User user) {
         Gson gson = new Gson();
-        JsonArray jsonArray = gson.toJsonTree(listUsers).getAsJsonArray();
-        String strJsonListUsers = jsonArray.toString();
-        DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_LIST_OBJECT_USER, strJsonListUsers);
+        String strJsonUser = gson.toJson(user);
+        DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_OBJECT_USER, strJsonUser);
     }
 
     public static List<User> getListUsers() {
@@ -114,6 +108,13 @@ public class DataLocalManager {
             throw new RuntimeException(e);
         }
         return listUsers;
+    }
+
+    public static void setListUsers(List<User> listUsers) {
+        Gson gson = new Gson();
+        JsonArray jsonArray = gson.toJsonTree(listUsers).getAsJsonArray();
+        String strJsonListUsers = jsonArray.toString();
+        DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_LIST_OBJECT_USER, strJsonListUsers);
     }
 
     public static void clear() {

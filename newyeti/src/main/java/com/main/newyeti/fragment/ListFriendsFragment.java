@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
 import com.main.newyeti.activities.SearchFriendActivity;
-import com.main.newyeti.adapter.UserAdapter;
+import com.main.newyeti.adapter.FriendAdapter;
 import com.main.newyeti.model.Friend;
 import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.ApiService;
@@ -30,8 +31,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListFriendsFragment extends Fragment {
-    private static Context context;
-    UserAdapter userAdapter;
+    FriendAdapter friendAdapter;
+    private Context context;
     private View view;
     private RecyclerView userView;
 
@@ -62,7 +63,7 @@ public class ListFriendsFragment extends Fragment {
         });
 
         userView = view.findViewById(R.id.listFriendsView);
-        userAdapter = new UserAdapter(getActivity());
+        friendAdapter = new FriendAdapter(getActivity());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         userView.setLayoutManager(linearLayoutManager);
@@ -78,15 +79,15 @@ public class ListFriendsFragment extends Fragment {
 
     private void getListFriend() {
         List<User> list = new ArrayList<>();
-        Log.e("ListFriendsFragment", "getListFriend: " + DataLocalManager.getApiKey());
-
+        Log.e("MyLog", "ListFriendsFragment:getListFriend: " + DataLocalManager.getApiKey());
 
         String header = "Bearer " + DataLocalManager.getApiKey();
         String id = DataLocalManager.getMyUserId();
-        ApiService.apiService.getListFriends(header, id).enqueue(new Callback<List<Friend>>() {
+        ApiService.apiService.getListFriends(id).enqueue(new Callback<List<Friend>>() {
             @Override
-            public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
+            public void onResponse(@NonNull Call<List<Friend>> call, @NonNull Response<List<Friend>> response) {
                 if (response.body() != null && response.isSuccessful()) {
+                    Log.e("MyLog", "ListFriendsFragment:getListFriend: onResponse: " + response.body());
                     List<Friend> friendLists = response.body();
                     for (Friend friend : friendLists) {
                         User user = new User(friend.getUser());
@@ -97,14 +98,15 @@ public class ListFriendsFragment extends Fragment {
                     list.add(new User(R.drawable.avatar, "Lỗi"));
                 }
                 if (list.size() > 0) {
-                    userAdapter.setListUser(list);
-                    userView.setAdapter(userAdapter);
+                    friendAdapter.setListUser(list);
+                    userView.setAdapter(friendAdapter);
                     Toast.makeText(context, "Có " + list.size() + " bạn bè", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Friend>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Friend>> call, @NonNull Throwable t) {
+                Log.e("MyLog", "ListFriendsFragment:getListFriend: onFailure: " + t.getMessage());
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

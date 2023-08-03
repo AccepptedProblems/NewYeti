@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Log.e("Login", "onResume" + DataLocalManager.getMyEmail() + " " + DataLocalManager.getMyPassword());
+        Log.e("MyLog", "onResume LoginActivity " + DataLocalManager.getMyEmail() + " " + DataLocalManager.getMyPassword());
 
         if (DataLocalManager.getMyEmail() != null && DataLocalManager.getMyPassword() != null
                 && !DataLocalManager.getMyEmail().equals("") && !DataLocalManager.getMyPassword().equals("")) {
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 loading(false);
                 if (response.body() != null && response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    Log.e("Login", "Success" + response.body().getApiKey());
+                    Log.e("MyLog", "Login Success" + response.body().getApiKey());
 
                     // Lấy apiKey, userId để lưu vào shared preferences
                     String apiKey = response.body().getApiKey();
@@ -98,15 +98,15 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                    Log.e("Login", "Failed" + response.body());
+                    Log.e("MyLog", "Login Failed " + response.body());
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginResp> call, @NonNull Throwable t) {
                 loading(false);
-                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                Log.e("Login", "onFailure: " + t.getMessage());
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("MyLog", "Login onFailure: " + t.getMessage());
             }
         });
     }

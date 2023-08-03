@@ -17,7 +17,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -38,9 +37,8 @@ public interface ApiService {
 
     ApiService apiService = new Retrofit.Builder()
             .baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))
-//            .client(okBuilder.build())
+            .client(okBuilder.build())
             .build().create(ApiService.class);
-
 
     @POST("v1/api/user/login")
     Call<LoginResp> login(@Body User user);
@@ -52,11 +50,12 @@ public interface ApiService {
     Call<User> getUserById(@Path("id") String id);
 
     @GET("v1/api/friend/{id}/list")
-    Call<List<Friend>> getListFriends(@Header("Authorization") String apikey, @Path("id") String id);
+    Call<List<Friend>> getListFriends(@Path("id") String id);
 
     @GET("v1/api/user/all")
-    Call<List<User>> getListUsers(@Header("Authorization") String apikey);
+    Call<List<User>> getListUsers();
+    // @Header("Authorization") String apikey
 
-    @POST("v1/api/friend")
-    Call<User> addFriend(@Header("Authorization") String apikey, @Body AddFriendReq addFriendReq);
+    @POST("v1/api/friend/{id}/request")
+    Call<User> addFriend(@Path("id") String id, @Body AddFriendReq addFriendReq);
 }

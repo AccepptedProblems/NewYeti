@@ -60,8 +60,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.resourceAvt.setImageResource(user.getResourceAvt());
         holder.nameUser.setText(user.getEmail());
         holder.btnAddFriend.setOnClickListener(v -> {
-            if (addFriend(DataLocalManager.getMyUserId(), user.getId()))
-                holder.btnAddFriend.setVisibility(View.GONE);
+            addFriend(DataLocalManager.getMyUserId(), user.getId());
         });
     }
 
@@ -107,15 +106,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         };
     }
 
-    private boolean addFriend(String idUserFrom, String idUserTo) {
+    private void addFriend(String idUserFrom, String idUserTo) {
         AddFriendReq addFriendReq = new AddFriendReq(idUserFrom, idUserTo);
-        final boolean[] res = {false};
-        ApiService.apiService.addFriend(DataLocalManager.getApiKey(), addFriendReq).enqueue(new Callback<User>() {
+
+        ApiService.apiService.addFriend(idUserFrom, addFriendReq).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                Log.d("AddFriend", "onResponse: " + response.body());
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                Log.e("MyLog", "UserAdapter:addFriend onResponse: " + idUserFrom + " " + idUserTo + " " + DataLocalManager.getApiKey());
                 if (response.body() != null && response.isSuccessful()) {
-                    res[0] = true;
                     Toast.makeText(mContext, "Add friend successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(mContext, "Add friend failed", Toast.LENGTH_SHORT).show();
@@ -123,13 +121,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e("AddFriend", "onFailure: " + t.getMessage());
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                Log.e("MyLog", "UserAdapter:addFriend onFailure: " + t.getMessage());
                 Toast.makeText(mContext, "Add friend failed", Toast.LENGTH_SHORT).show();
             }
         });
-
-        return res[0];
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {

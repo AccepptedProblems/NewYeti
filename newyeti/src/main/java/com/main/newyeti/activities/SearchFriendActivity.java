@@ -32,7 +32,6 @@ public class SearchFriendActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private SearchView searchView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,15 +78,15 @@ public class SearchFriendActivity extends AppCompatActivity {
     private void getListUser() {
         List<User> list = new ArrayList<>();
 
-        String header = "Bearer " + DataLocalManager.getApiKey();
+//        String header = "Bearer " + DataLocalManager.getApiKey();
 
         loading(true);
 
-        ApiService.apiService.getListUsers(header).enqueue(new Callback<List<User>>() {
+        ApiService.apiService.getListUsers().enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Log.e("SearchFriendActivity", "onResponse: " + response.body().size());
+                    Log.e("MyLog", "Search Friend onResponse: " + response.body().size());
                     List<User> userLists = response.body();
                     for (User user : userLists) {
                         user.setResourceAvt(R.drawable.avatar);
@@ -95,7 +94,7 @@ public class SearchFriendActivity extends AppCompatActivity {
                             list.add(user);
                     }
                 } else {
-                    Log.e("SearchFriendActivity", "onResponse: " + response.code());
+                    Log.e("MyLog", "Search Friend onResponse: " + response.code());
                     list.add(new User(R.drawable.avatar, "Lỗi"));
                 }
 
@@ -109,7 +108,7 @@ public class SearchFriendActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<List<User>> call, @NonNull Throwable t) {
                 loading(false);
-                Log.e("SearchFriendActivity", "onFailure: " + t.getMessage());
+                Log.e("MyLog", "Search Friend onFailure: " + t.getMessage());
             }
         });
     }

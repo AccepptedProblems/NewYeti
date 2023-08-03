@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (response.body() != null && response.isSuccessful()) {
                     showToast("Đăng ký thành công");
-                    Log.e("Register", "Success");
+                    Log.e("MyLog", "Register Success");
 
                     DataLocalManager.setMyEmail(response.body().getEmail());
                     DataLocalManager.setMyPassword(passwordRegis.getText().toString());
@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 loading(false);
                 showToast("Đăng ký thất bại");
-                Log.e("Register", "onFailure: " + t.getMessage());
+                Log.e("MyLog", "Register onFailure: " + t.getMessage());
             }
         });
     }
@@ -152,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 dateOfBirth = format.parse(dateOfBirthString);
             } catch (ParseException e) {
-                Log.e("Register", "checkInput: " + e.getMessage());
+                Log.e("MyLog", "Register checkInput: " + e.getMessage());
                 throw new RuntimeException(e);
             }
             return new User(username, password, email, name, gender, dateOfBirth);
