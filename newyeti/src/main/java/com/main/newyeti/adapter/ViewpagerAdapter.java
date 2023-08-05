@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.main.newyeti.fragment.ListChatFragment;
+import com.main.newyeti.fragment.ListChannelFragment;
 import com.main.newyeti.fragment.ListFriendsFragment;
 import com.main.newyeti.fragment.SettingFragment;
 
@@ -23,7 +23,7 @@ public class ViewpagerAdapter extends FragmentStateAdapter {
             case 2:
                 return new SettingFragment();
             default:
-                return new ListChatFragment();
+                return new ListChannelFragment();
         }
     }
 

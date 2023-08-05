@@ -49,7 +49,6 @@
         app:layout_constraintStart_toStartOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChat"
         android:layout_width="match_parent"
@@ -65,6 +64,7 @@
         app:layout_constraintTop_toBottomOf="@id/ivBkg" />
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         app:layout_constraintBottom_toTopOf="@id/ivBkg2"

@@ -37,6 +37,7 @@
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
@@ -49,5 +50,14 @@
             android:layout_height="wrap_content" />
     </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/scroll"
+        app:layout_constraintEnd_toEndOf="@id/scroll"
+        app:layout_constraintStart_toStartOf="@id/scroll"
+        app:layout_constraintTop_toTopOf="@id/scroll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

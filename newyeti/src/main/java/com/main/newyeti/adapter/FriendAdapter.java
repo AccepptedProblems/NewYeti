@@ -23,7 +23,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.UserViewHolder> {
     private final Context mContext;
     private List<User> listUser;
-    private List<User> listUserOld;
 
     public FriendAdapter(Context mContext) {
         this.mContext = mContext;
@@ -31,7 +30,6 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.UserViewHo
 
     public void setListUser(List<User> listUser) {
         this.listUser = listUser;
-        this.listUserOld = listUser;
         notifyDataSetChanged();
     }
 
@@ -80,6 +78,5 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.UserViewHo
             nameUser = itemView.findViewById(R.id.tvUsername);
             itemFriend = itemView.findViewById(R.id.itemFriend);
         }
-
     }
 }

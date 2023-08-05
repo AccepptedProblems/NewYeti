@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,17 +86,27 @@ public class SearchFriendActivity extends AppCompatActivity {
         ApiService.apiService.getListUsers().enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
-                if (response.body() != null && response.isSuccessful()) {
-                    Log.e("MyLog", "Search Friend onResponse: " + response.body().size());
-                    List<User> userLists = response.body();
-                    for (User user : userLists) {
-                        user.setResourceAvt(R.drawable.avatar);
-                        if (!user.getEmail().equals(DataLocalManager.getMyEmail()))
-                            list.add(user);
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        Log.e("MyLog", "Search Friend onResponse: " + response.body().size());
+                        List<User> userLists = response.body();
+                        for (User user : userLists) {
+                            user.setResourceAvt(R.drawable.avatar);
+                            if (!user.getEmail().equals(DataLocalManager.getMyEmail()))
+                                list.add(user);
+                        }
+                    } else {
+                        Toast.makeText(SearchFriendActivity.this, "Không có bạn bè để hiển thị", Toast.LENGTH_SHORT).show();
                     }
+                } else if (response.code() == 401) {
+                    Toast.makeText(SearchFriendActivity.this, "Phiên đăng nhập đã hết hạn", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SearchFriendActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (response.code() == 500) {
+                    Toast.makeText(SearchFriendActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("MyLog", "Search Friend onResponse: " + response.code());
-                    list.add(new User(R.drawable.avatar, "Lỗi"));
                 }
 
                 if (list.size() > 0) {

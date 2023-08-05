@@ -47,7 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
-        return new UserAdapter.UserViewHolder(view);
+        return new UserViewHolder(view);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private void addFriend(String idUserFrom, String idUserTo) {
         AddFriendReq addFriendReq = new AddFriendReq(idUserFrom, idUserTo);
 
-        ApiService.apiService.addFriend(idUserFrom, addFriendReq).enqueue(new Callback<User>() {
+        ApiService.apiService.addFriend(addFriendReq).enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 Log.e("MyLog", "UserAdapter:addFriend onResponse: " + idUserFrom + " " + idUserTo + " " + DataLocalManager.getApiKey());
@@ -128,7 +128,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         });
     }
 
-    public class UserViewHolder extends RecyclerView.ViewHolder {
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
         private final CircleImageView resourceAvt;
         private final TextView nameUser;
         private final ImageButton btnAddFriend;
@@ -140,6 +140,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             nameUser = itemView.findViewById(R.id.tvUsername);
             btnAddFriend = itemView.findViewById(R.id.ivAddFriend);
         }
-
     }
 }

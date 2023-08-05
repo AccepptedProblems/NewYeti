@@ -64,9 +64,11 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.e("MyLog", "onResume LoginActivity " + DataLocalManager.getMyEmail() + " " + DataLocalManager.getMyPassword());
 
-        if (DataLocalManager.getMyEmail() != null && DataLocalManager.getMyPassword() != null
-                && !DataLocalManager.getMyEmail().equals("") && !DataLocalManager.getMyPassword().equals("")) {
+        if (DataLocalManager.getMyEmail() != null && !DataLocalManager.getMyEmail().equals("")) {
             email.setText(DataLocalManager.getMyEmail());
+        }
+
+        if (DataLocalManager.getMyPassword() != null && !DataLocalManager.getMyPassword().equals("")) {
             password.setText(DataLocalManager.getMyPassword());
         }
     }
@@ -79,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 loading(false);
                 if (response.body() != null && response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    Log.e("MyLog", "Login Success" + response.body().getApiKey());
+                    Log.e("MyLog", "Login Success " + response.body().getApiKey());
 
                     // Lấy apiKey, userId để lưu vào shared preferences
                     String apiKey = response.body().getApiKey();
@@ -90,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                     DataLocalManager.setMyUserId(res.getId());
                     DataLocalManager.setMyName(res.getDisplayName());
                     DataLocalManager.setMyEmail(res.getEmail());
-                    DataLocalManager.setMyPassword(res.getPassword());
+                    DataLocalManager.setMyPassword(user.getPassword());
 
                     //Tạo Intent để truyền dữ liệu sang Main
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

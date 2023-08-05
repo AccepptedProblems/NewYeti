@@ -12,66 +12,70 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
 import com.main.newyeti.activities.MessageActivity;
-import com.main.newyeti.model.Chat;
+import com.main.newyeti.model.Channel;
+import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.DataLocalManager;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.ChatViewHolder> {
+public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.ChannelViewHolder> {
     private Context mContext;
-    private List<Chat> listChat;
+    private List<Channel> listChannel;
 
-    public ListChatAdapter(Context mContext, List<Chat> listChat) {
+    public ListChannelAdapter(Context mContext) {
         this.mContext = mContext;
-        this.listChat = listChat;
     }
 
-    public void setListChat(List<Chat> listChat) {
-        this.listChat = listChat;
+    public void setListChannel(List<Channel> listChannel) {
+        this.listChannel = listChannel;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
-        return new ChatViewHolder(view);
+    public ChannelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_channel, parent, false);
+        return new ChannelViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        Chat chat = listChat.get(position);
-        if (chat == null) {
+    public void onBindViewHolder(@NonNull ChannelViewHolder holder, int position) {
+        Channel channel = listChannel.get(position);
+        if (channel == null) {
             return;
         }
-        holder.avtChat.setImageResource(chat.getResourceImg());
-        holder.nameUser.setText(chat.getNameUser());
-        holder.msgUser.setText(chat.getMsg());
+        User receiverUser = channel.getUsers()[1];
+        holder.avtChat.setImageResource(receiverUser.getResourceAvt());
+        holder.nameUser.setText(receiverUser.getDisplayName());
+        if (channel.getLastMessage() != null) {
+            holder.msgUser.setText(channel.getLastMessage().getContent());
+        }
+
 
         holder.itemChat.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, MessageActivity.class);
-            intent.putExtra(DataLocalManager.KEY_NAME_RECEIVER_USER, chat.getNameUser());
+            intent.putExtra(DataLocalManager.KEY_NAME_RECEIVER_USER, receiverUser.getDisplayName());
             mContext.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        if (listChat != null) {
-            return listChat.size();
+        if (listChannel != null) {
+            return listChannel.size();
         }
         return 0;
     }
 
-    public static class ChatViewHolder extends RecyclerView.ViewHolder {
+    public static class ChannelViewHolder extends RecyclerView.ViewHolder {
         private final View itemChat;
         private final CircleImageView avtChat;
         private final TextView nameUser;
         private final TextView msgUser;
 
-        public ChatViewHolder(@NonNull View itemView) {
+        public ChannelViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemChat = itemView.findViewById(R.id.itemChat);

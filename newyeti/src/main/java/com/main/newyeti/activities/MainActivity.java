@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_list_message).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.menu_list_channels).setChecked(true);
                         break;
                     case 1:
                         bottomNavigationView.getMenu().findItem(R.id.menu_list_friends).setChecked(true);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.menu_list_message) {
+            if (item.getItemId() == R.id.menu_list_channels) {
                 viewPager2.setCurrentItem(0);
             } else if (item.getItemId() == R.id.menu_list_friends) {
                 viewPager2.setCurrentItem(1);
