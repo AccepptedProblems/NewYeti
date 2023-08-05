@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemNotification"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/custom_chat"
+    tools:context=".activities.ItemNotification"
+    android:paddingLeft="15dp"
+    android:paddingBottom="10dp"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avtNotification"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/avatar" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvUsernameNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/avtChat"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Changhoochin"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/accept"
+                android:layout_width="110dp"
+                android:padding="0dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:text="@string/btn_accept" />
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="110dp"
+                android:padding="0dp"
+                android:layout_height="40dp"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/btn_delete" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

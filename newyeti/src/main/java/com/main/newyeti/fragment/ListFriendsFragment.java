@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
+import com.main.newyeti.activities.NotificationActivity;
 import com.main.newyeti.activities.SearchFriendActivity;
 import com.main.newyeti.adapter.FriendAdapter;
 import com.main.newyeti.model.Friend;
@@ -55,6 +57,12 @@ public class ListFriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_list_friends, container, false);
+
+        ImageView notification = view.findViewById(R.id.notification);
+        notification.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), NotificationActivity.class);
+            startActivity(intent);
+        });
 
         Button searchList = view.findViewById(R.id.searchList);
         searchList.setOnClickListener(v -> {
@@ -100,14 +108,14 @@ public class ListFriendsFragment extends Fragment {
                 if (list.size() > 0) {
                     friendAdapter.setListUser(list);
                     userView.setAdapter(friendAdapter);
-                    Toast.makeText(context, "Có " + list.size() + " bạn bè", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Có " + list.size() + " bạn bè", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Friend>> call, @NonNull Throwable t) {
                 Log.e("MyLog", "ListFriendsFragment:getListFriend: onFailure: " + t.getMessage());
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

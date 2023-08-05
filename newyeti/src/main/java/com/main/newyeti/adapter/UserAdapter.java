@@ -109,7 +109,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private void addFriend(String idUserFrom, String idUserTo) {
         AddFriendReq addFriendReq = new AddFriendReq(idUserFrom, idUserTo);
 
-        ApiService.apiService.addFriend(idUserFrom, addFriendReq).enqueue(new Callback<User>() {
+        ApiService.apiService.addFriend(addFriendReq).enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 Log.e("MyLog", "UserAdapter:addFriend onResponse: " + idUserFrom + " " + idUserTo + " " + DataLocalManager.getApiKey());

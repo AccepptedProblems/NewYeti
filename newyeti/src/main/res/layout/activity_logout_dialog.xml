@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="190dp"
+        android:layout_height="250dp"
         android:background="@drawable/custom_edittext"
         android:backgroundTint="@color/white"
         android:orientation="vertical"

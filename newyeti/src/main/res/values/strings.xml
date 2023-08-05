@@ -32,6 +32,14 @@
     <string name="menu_list_friend">Bạn bè</string>
     <string name="menu_settings">Cài đặt</string>
 
+    <string name="profile">Trang cá nhân</string>
+    <string name="birth">Sinh nhật: </string>
+    <string name="gender">Giới tính: </string>
+    <string name="email">Email: </string>
+
+    <string name="btn_accept">Chấp nhận</string>
+    <string name="btn_delete">Xóa</string>
+
     <string name="hint_message">Nhập tin nhắn...</string>
 
     <string name="title_search_friend">Thêm bạn bè</string>
@@ -45,6 +53,8 @@
     <string name="title_friends">Bạn bè</string>
 
     <string name="title_setting">Cài đặt</string>
+
+    <string name="title_acpFriend">Lời mời kết bạn</string>
 
 
 </resources>

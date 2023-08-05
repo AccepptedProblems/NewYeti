@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.main.newyeti.model.AddFriendReq;
 import com.main.newyeti.model.Friend;
 import com.main.newyeti.model.LoginResp;
+import com.main.newyeti.model.Notification;
 import com.main.newyeti.model.User;
 
 import java.util.List;
@@ -18,11 +19,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
     // TODO: Change this to your IP address, ipconfig in cmd -> adapter wifi -> IPv4 Address
-    String BASE_URL = "http://192.168.1.109:8081/";
+    String BASE_URL = "http://192.168.1.212:8081/";
     String header = "Bearer " + DataLocalManager.getApiKey();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
@@ -56,6 +58,12 @@ public interface ApiService {
     Call<List<User>> getListUsers();
     // @Header("Authorization") String apikey
 
-    @POST("v1/api/friend/{id}/request")
-    Call<User> addFriend(@Path("id") String id, @Body AddFriendReq addFriendReq);
+    @POST("v1/api/friend")
+    Call<User> addFriend(@Body AddFriendReq addFriendReq);
+
+    @GET("v1/api/friend/{id}/request")
+    Call<List<Notification>> getListFriendRequest(@Path("id") String id);
+
+    @PUT("v1/api/friend/{id}/confirm")
+    Call<User> acceptFriend(@Path("id") String id);
 }
