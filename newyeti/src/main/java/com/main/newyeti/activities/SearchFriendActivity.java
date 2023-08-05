@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
@@ -51,9 +50,6 @@ public class SearchFriendActivity extends AppCompatActivity {
         searchListAdapter = new UserAdapter(this);
         progressBar = findViewById(R.id.progressBar);
         searchView = findViewById(R.id.search);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        searchListView.setLayoutManager(linearLayoutManager);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

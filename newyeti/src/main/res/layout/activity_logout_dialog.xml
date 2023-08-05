@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/custom_edittext"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
@@ -33,19 +33,19 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
-            android:maxLines="1"
+            android:maxLines="2"
             android:text="Bạn có chắc muốn đăng xuất?"
             android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cancelBtn"
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
@@ -57,7 +57,7 @@
 
             <Button
                 android:id="@+id/logoutBtn"
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/secondary"

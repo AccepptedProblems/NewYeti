@@ -11,14 +11,31 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:fontFamily="@font/poppins_bold"
         android:padding="12dp"
-        android:layout_gravity="center"
-        android:textSize="@dimen/_18sdp"
-        android:text="@string/title_acpFriend" />
+        android:text="@string/title_acpFriend"
+        android:textSize="@dimen/_18sdp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listNotification"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10sdp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listNotification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+    </FrameLayout>
 </LinearLayout>

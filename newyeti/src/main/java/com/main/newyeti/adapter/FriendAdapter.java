@@ -37,7 +37,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.UserViewHo
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_friend, parent, false);
-        return new FriendAdapter.UserViewHolder(view);
+        return new UserViewHolder(view);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.UserViewHo
         return 0;
     }
 
-    public class UserViewHolder extends RecyclerView.ViewHolder {
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
         private final LinearLayout itemFriend;
         private final CircleImageView resourceAvt;
         private final TextView nameUser;

@@ -1,10 +1,13 @@
 package com.main.newyeti.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,18 +19,21 @@ import com.main.newyeti.model.Channel;
 import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.DataLocalManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.ChannelViewHolder> {
-    private Context mContext;
+public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.ChannelViewHolder> implements Filterable {
+    private final Context mContext;
     private List<Channel> listChannel;
+    private List<Channel> listChannelOld;
 
     public ListChannelAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setListChannel(List<Channel> listChannel) {
         this.listChannel = listChannel;
         notifyDataSetChanged();
@@ -53,7 +59,6 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
             holder.msgUser.setText(channel.getLastMessage().getContent());
         }
 
-
         holder.itemChat.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, MessageActivity.class);
             intent.putExtra(DataLocalManager.KEY_NAME_RECEIVER_USER, receiverUser.getDisplayName());
@@ -67,6 +72,39 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
             return listChannel.size();
         }
         return 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String strSearch = constraint.toString();
+                if (strSearch.isEmpty()) {
+                    listChannel = listChannelOld;
+                } else {
+                    List<Channel> list = new ArrayList<>();
+                    for (Channel channel : listChannelOld) {
+                        if (channel.getReceiverName().toLowerCase().contains(strSearch.toLowerCase())) {
+                            list.add(channel);
+                        }
+                    }
+                    listChannelOld = list;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listChannel;
+
+                return filterResults;
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                listChannel = (List<Channel>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public static class ChannelViewHolder extends RecyclerView.ViewHolder {

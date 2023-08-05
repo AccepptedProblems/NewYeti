@@ -18,11 +18,11 @@
         android:id="@+id/notification"
         android:layout_width="45dp"
         android:layout_height="30dp"
+        android:paddingLeft="15dp"
         android:src="@drawable/notifications_icon"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintTop_toTopOf="@id/ivBkg"
-        android:paddingLeft="15dp"
         tools:ignore="NotSibling" />
 
     <TextView
@@ -47,28 +47,29 @@
         app:layout_constraintEnd_toEndOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
-    <ScrollView
-        android:id="@+id/scroll"
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivBkg">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listFriendsView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            android:overScrollMode="never" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/scroll"
-        app:layout_constraintEnd_toEndOf="@id/scroll"
-        app:layout_constraintStart_toStartOf="@id/scroll"
-        app:layout_constraintTop_toTopOf="@id/scroll" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
