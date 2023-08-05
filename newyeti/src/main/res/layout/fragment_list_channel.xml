@@ -41,14 +41,6 @@
         app:layout_constraintStart_toStartOf="@id/ivBkg"
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
-    <ImageView
-        android:id="@+id/notification"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/notifications_icon"
-        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
     <EditText
         android:id="@+id/search"

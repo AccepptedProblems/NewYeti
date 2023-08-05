@@ -23,6 +23,13 @@ public class DataLocalManager {
     private static final String KEY_PASSWORD = "KEY_PASSWORD";
     private static final String KEY_OBJECT_USER = "KEY_OBJECT_USER";
     private static final String KEY_LIST_OBJECT_USER = "KEY_LIST_OBJECT_USER";
+
+    public static final String KEY_PROFILE = "KEY_PROFILE";
+    public static final int VALUE_PROFILE_MINE = 1;
+    public static final int VALUE_PROFILE_FRIEND = 2;
+    public static final int VALUE_PROFILE_NO_FRIEND = 3;
+    public static final int VALUE_PROFILE_ACCEPT_FRIEND = 4;
+
     private static DataLocalManager instance;
     private MySharedPreferences mySharedPreferences;
 

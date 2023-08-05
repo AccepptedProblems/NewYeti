@@ -18,11 +18,13 @@ import androidx.fragment.app.Fragment;
 
 import com.main.newyeti.R;
 import com.main.newyeti.activities.LoginActivity;
+import com.main.newyeti.activities.ProfileActivity;
 import com.main.newyeti.utilities.DataLocalManager;
 
 public class SettingFragment extends Fragment {
     private static Context context;
     private View view;
+
 
     public SettingFragment() {
         // Required empty public constructor
@@ -56,6 +58,14 @@ public class SettingFragment extends Fragment {
             username = "@" + email.substring(0, email.indexOf("@"));
         }
         textUserNameSetting.setText(username);
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         logout.setOnClickListener(v -> openLogoutDialog());
 
