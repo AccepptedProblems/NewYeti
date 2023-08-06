@@ -1,20 +1,30 @@
 package com.main.newyeti.model;
 
+import android.text.format.DateUtils;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Message {
     private String id;
     private String channelId;
-    private String senderId;
-
+    private String userSendId;
     private MessageType type;
     private String content;
     private Date timeSent;
 
-    public Message(String id, String channelId, String senderId, MessageType type, String content, Date timeSent) {
+    public Message(String id, String channelId, String userSendId, MessageType type, String content, Date timeSent) {
         this.id = id;
         this.channelId = channelId;
-        this.senderId = senderId;
+        this.userSendId = userSendId;
+        this.type = type;
+        this.content = content;
+        this.timeSent = timeSent;
+    }
+
+    public Message(String channelId, String userSendId, MessageType type, String content, Date timeSent) {
+        this.channelId = channelId;
+        this.userSendId = userSendId;
         this.type = type;
         this.content = content;
         this.timeSent = timeSent;
@@ -36,12 +46,12 @@ public class Message {
         this.channelId = channelId;
     }
 
-    public String getSenderId() {
-        return senderId;
+    public String getUserSendId() {
+        return userSendId;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public void setUserSendId(String userSendId) {
+        this.userSendId = userSendId;
     }
 
     public MessageType getType() {
@@ -60,8 +70,15 @@ public class Message {
         this.content = content;
     }
 
-    public Date getTimeSent() {
-        return timeSent;
+    public String getTimeSent() {
+        // format date to string like "hh:mm" if timeSent is today
+        if (DateUtils.isToday(timeSent.getTime())) {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            return formatter.format(timeSent);
+        } else {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            return formatter.format(timeSent);
+        }
     }
 
     public void setTimeSent(Date timeSent) {

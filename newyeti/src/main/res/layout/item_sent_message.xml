@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_sent_message"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/_4sdp">
 
     <TextView
         android:id="@+id/tvMessage"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bkg_sent_message"
+        android:maxWidth="@dimen/_45sdp"
         android:padding="@dimen/_8sdp"
         android:textColor="@color/white"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="wrap"
         app:layout_constraintWidth_percent="0.8" />
 
     <TextView
-        android:id="@+id/tvData"
-        android:layout_width="0dp"
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
         android:textColor="@color/white"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_8ssp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMessage" />
 

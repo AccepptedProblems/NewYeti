@@ -3,6 +3,7 @@ package com.main.newyeti.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.main.newyeti.R;
 import com.main.newyeti.activities.MessageActivity;
 import com.main.newyeti.model.Channel;
-import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.DataLocalManager;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
     @SuppressLint("NotifyDataSetChanged")
     public void setListChannel(List<Channel> listChannel) {
         this.listChannel = listChannel;
+        listChannelOld = listChannel;
         notifyDataSetChanged();
     }
 
@@ -52,16 +54,22 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
         if (channel == null) {
             return;
         }
-        User receiverUser = channel.getUsers()[1];
-        holder.avtChat.setImageResource(receiverUser.getResourceAvt());
-        holder.nameUser.setText(receiverUser.getDisplayName());
-        if (channel.getLastMessage() != null) {
-            holder.msgUser.setText(channel.getLastMessage().getContent());
+
+        holder.nameUser.setText(channel.getNameChannel());
+        holder.avtChannel.setImageResource(channel.getResourceAvt());
+
+        if (channel.getLatestMess() != null) {
+            holder.msgUser.setText(channel.getLatestMess().getContent());
         }
 
-        holder.itemChat.setOnClickListener(v -> {
+        holder.itemChannel.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, MessageActivity.class);
-            intent.putExtra(DataLocalManager.KEY_NAME_RECEIVER_USER, receiverUser.getDisplayName());
+
+            // channel to json
+            Gson gson = new Gson();
+            String json = gson.toJson(channel);
+            intent.putExtra(DataLocalManager.KEY_CURRENT_CHANNEL, json);
+
             mContext.startActivity(intent);
         });
     }
@@ -85,11 +93,13 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
                 } else {
                     List<Channel> list = new ArrayList<>();
                     for (Channel channel : listChannelOld) {
+                        Log.e("MyLog", "Channel Adapter: " + channel.getReceiverName() + " " + strSearch);
+
                         if (channel.getReceiverName().toLowerCase().contains(strSearch.toLowerCase())) {
                             list.add(channel);
                         }
                     }
-                    listChannelOld = list;
+                    listChannel = list;
                 }
 
                 FilterResults filterResults = new FilterResults();
@@ -108,17 +118,17 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
     }
 
     public static class ChannelViewHolder extends RecyclerView.ViewHolder {
-        private final View itemChat;
-        private final CircleImageView avtChat;
+        private final View itemChannel;
+        private final CircleImageView avtChannel;
         private final TextView nameUser;
         private final TextView msgUser;
 
         public ChannelViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            itemChat = itemView.findViewById(R.id.itemChat);
+            itemChannel = itemView.findViewById(R.id.itemChannel);
 
-            avtChat = itemView.findViewById(R.id.avtChat);
+            avtChannel = itemView.findViewById(R.id.avtChannel);
             nameUser = itemView.findViewById(R.id.tvUsername);
             msgUser = itemView.findViewById(R.id.tvMsgUser);
         }

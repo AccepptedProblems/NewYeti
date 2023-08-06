@@ -1,17 +1,20 @@
 package com.main.newyeti.model;
 
+import com.main.newyeti.R;
+import com.main.newyeti.utilities.DataLocalManager;
+
 public class Channel {
     private String id;
     private ChannelType type;
     private String name;
-    private Message lastMessage;
+    private Message latestMess;
     private User[] users;
 
-    public Channel(String id, ChannelType type, String name, Message lastMessage, User[] users) {
+    public Channel(String id, ChannelType type, String name, Message latestMess, User[] users) {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.lastMessage = lastMessage;
+        this.latestMess = latestMess;
         this.users = users;
     }
 
@@ -39,12 +42,12 @@ public class Channel {
         this.name = name;
     }
 
-    public Message getLastMessage() {
-        return lastMessage;
+    public Message getLatestMess() {
+        return latestMess;
     }
 
-    public void setLastMessage(Message lastMessage) {
-        this.lastMessage = lastMessage;
+    public void setLatestMess(Message latestMess) {
+        this.latestMess = latestMess;
     }
 
     public User[] getUsers() {
@@ -55,8 +58,53 @@ public class Channel {
         this.users = users;
     }
 
+    public String getNameChannel() {
+        if (type == ChannelType.DIRECT) {
+            for (User user : users) {
+                if (!user.getId().equals(DataLocalManager.getMyUserId()))
+                    return user.getDisplayName();
+            }
+        } else {
+            return name;
+        }
+        return "PRIVATE";
+    }
+
+    public int getResourceAvt() {
+        if (type == ChannelType.DIRECT) {
+            for (User user : users) {
+                if (!user.getId().equals(DataLocalManager.getMyUserId()))
+//                    return user.getResourceAvt();
+                    return R.drawable.avatar;
+            }
+        } else {
+            return R.drawable.avatar;
+        }
+        return R.drawable.avatar;
+    }
+
     public String getReceiverName() {
-        return users[1].getDisplayName();
+        if (type == ChannelType.DIRECT) {
+            for (User user : users) {
+                if (!user.getId().equals(DataLocalManager.getMyUserId()))
+                    return user.getDisplayName();
+            }
+        } else {
+            return "Group";
+        }
+        return "PRIVATE";
+    }
+
+    public User getReceiveUser() {
+        if (type == ChannelType.DIRECT) {
+            for (User user : users) {
+                if (!user.getId().equals(DataLocalManager.getMyUserId()))
+                    return user;
+            }
+        } else {
+            return null;
+        }
+        return null;
     }
 
     public enum ChannelType {

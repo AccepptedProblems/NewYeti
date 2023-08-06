@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChat"
+        android:id="@+id/rvMessage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/primary"
@@ -58,15 +58,16 @@
         android:orientation="vertical"
         android:overScrollMode="never"
         android:padding="@dimen/_10sdp"
-        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/ivBkg2"
-        app:layout_constraintTop_toBottomOf="@id/ivBkg" />
+        app:layout_constraintTop_toBottomOf="@id/ivBkg"
+        app:stackFromEnd="true" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ivBkg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +85,7 @@
     <ImageButton
         android:id="@+id/addIcon"
         android:layout_width="35dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="@dimen/_6sdp"
         android:backgroundTint="@color/primary"
         android:src="@drawable/ic_add_friend"
@@ -93,19 +94,30 @@
         app:layout_constraintTop_toTopOf="@id/ivBkg2" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/etMessage"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="@drawable/custom_edittext"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/hint_message"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionDone"
         android:inputType="text"
         android:paddingStart="20dp"
         app:layout_constraintBottom_toBottomOf="@id/ivBkg2"
         app:layout_constraintStart_toEndOf="@id/addIcon"
         app:layout_constraintTop_toTopOf="@id/ivBkg2"
-        app:layout_constraintWidth_percent="0.82" />
+        app:layout_constraintWidth_percent="0.8" />
+
+    <ImageView
+        android:id="@+id/sendIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_send"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg2"
+        app:layout_constraintEnd_toEndOf="@id/ivBkg2"
+        app:layout_constraintStart_toEndOf="@id/etMessage"
+        app:layout_constraintTop_toTopOf="@id/ivBkg2"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -90,12 +90,12 @@ public class ListChannelFragment extends Fragment {
     }
 
     private void getListChannels() {
-        progressBar.setVisibility(View.VISIBLE);
+        loading(true);
 
         ApiService.apiService.getListChannels(DataLocalManager.getMyUserId()).enqueue(new Callback<List<Channel>>() {
             @Override
             public void onResponse(@NonNull Call<List<Channel>> call, @NonNull Response<List<Channel>> response) {
-                progressBar.setVisibility(View.INVISIBLE);
+                loading(false);
 
                 if (response.isSuccessful()) {
                     List<Channel> listChannels = response.body();
@@ -116,9 +116,19 @@ public class ListChannelFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<Channel>> call, @NonNull Throwable t) {
-                progressBar.setVisibility(View.INVISIBLE);
+                loading(false);
                 Log.e("MyLog", t.getMessage());
             }
         });
+    }
+
+    private void loading(boolean isLoading) {
+        if (isLoading) {
+            progressBar.setVisibility(View.VISIBLE);
+            rvListChannels.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            rvListChannels.setVisibility(View.VISIBLE);
+        }
     }
 }
