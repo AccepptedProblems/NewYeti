@@ -7,11 +7,30 @@
     android:orientation="vertical"
     tools:context=".activities.NotificationActivity">
 
+    <ImageView
+        android:id="@+id/ivBkg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/primary"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Suspicious0dp" />
+
+    <ImageView
+        android:id="@+id/arrowBack"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintTop_toTopOf="@id/ivBkg"
+        android:paddingLeft="15dp"
+        tools:ignore="NotSibling" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:fontFamily="@font/poppins_bold"
         android:padding="12dp"
         android:text="@string/title_acpFriend"

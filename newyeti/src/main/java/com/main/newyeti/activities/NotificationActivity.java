@@ -44,6 +44,7 @@ public class NotificationActivity extends AppCompatActivity {
         getListNotification();
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
