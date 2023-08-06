@@ -1,5 +1,6 @@
 package com.main.newyeti.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         this.mContext = mContext;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setListUser(List<User> listUser) {
         this.listUser = listUser;
         this.listUserOld = listUser;
@@ -60,7 +63,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.resourceAvt.setImageResource(user.getResourceAvt());
         holder.nameUser.setText(user.getEmail());
         holder.btnAddFriend.setOnClickListener(v -> {
+            holder.loading(true);
             addFriend(DataLocalManager.getMyUserId(), user.getId());
+            holder.btnAddFriend.setVisibility(View.GONE);
+            holder.loading(false);
         });
     }
 
@@ -132,6 +138,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         private final CircleImageView resourceAvt;
         private final TextView nameUser;
         private final ImageButton btnAddFriend;
+        private final ProgressBar progressBar;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -139,6 +146,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             resourceAvt = itemView.findViewById(R.id.avtUser);
             nameUser = itemView.findViewById(R.id.tvUsername);
             btnAddFriend = itemView.findViewById(R.id.ivAddFriend);
+            progressBar = itemView.findViewById(R.id.progressBar);
+        }
+
+        void loading(boolean isLoading) {
+            if (isLoading) {
+                progressBar.setVisibility(View.VISIBLE);
+            } else {
+                progressBar.setVisibility(View.GONE);
+            }
         }
     }
 }

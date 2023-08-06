@@ -10,9 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
@@ -33,6 +33,7 @@ public class ListChannelFragment extends Fragment {
     private View view;
     private RecyclerView rvListChannels;
     private ProgressBar progressBar;
+    private SearchView searchView;
 
     public ListChannelFragment() {
         // Required empty public constructor
@@ -57,12 +58,26 @@ public class ListChannelFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
 
         rvListChannels = view.findViewById(R.id.rvListChannels);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        rvListChannels.setLayoutManager(linearLayoutManager);
         rvListChannels.addItemDecoration(
                 new DividerItemDecoration(view.getContext(), RecyclerView.VERTICAL));
 
         listChannelAdapter = new ListChannelAdapter(getActivity());
+
+        searchView = view.findViewById(R.id.search);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                listChannelAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                listChannelAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         return view;
     }
@@ -102,7 +117,6 @@ public class ListChannelFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<List<Channel>> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.INVISIBLE);
-
                 Log.e("MyLog", t.getMessage());
             }
         });

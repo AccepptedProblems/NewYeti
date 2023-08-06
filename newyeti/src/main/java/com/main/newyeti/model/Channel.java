@@ -55,6 +55,10 @@ public class Channel {
         this.users = users;
     }
 
+    public String getReceiverName() {
+        return users[1].getDisplayName();
+    }
+
     public enum ChannelType {
         DIRECT, GROUP, PRIVATE;
     }

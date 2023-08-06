@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -88,8 +88,18 @@ public class ListFriendsFragment extends Fragment {
         getListFriend();
     }
 
+    private void loading(boolean isLoading) {
+        if (isLoading) {
+            progressBar.setVisibility(View.VISIBLE);
+            listFriendsView.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            listFriendsView.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void getListFriend() {
-        progressBar.setVisibility(View.VISIBLE);
+        loading(true);
 
         List<User> list = new ArrayList<>();
 
@@ -98,7 +108,7 @@ public class ListFriendsFragment extends Fragment {
         ApiService.apiService.getListFriends(id).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(@NonNull Call<List<Friend>> call, @NonNull Response<List<Friend>> response) {
-                progressBar.setVisibility(View.INVISIBLE);
+                loading(false);
 
                 if (response.isSuccessful()) {
                     Log.e("MyLog", "ListFriendsFragment:getListFriend: onResponse: " + response.body());
@@ -124,7 +134,7 @@ public class ListFriendsFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<Friend>> call, @NonNull Throwable t) {
-                progressBar.setVisibility(View.GONE);
+                loading(false);
                 Log.e("MyLog", "ListFriendsFragment:getListFriend: onFailure: " + t.getMessage());
             }
         });

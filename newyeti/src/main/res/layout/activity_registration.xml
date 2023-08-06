@@ -12,7 +12,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:paddingTop="@dimen/_30sdp"
         android:paddingBottom="@dimen/_30sdp">
 
@@ -150,7 +149,7 @@
             android:ems="10"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/reinput_pw_register"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"

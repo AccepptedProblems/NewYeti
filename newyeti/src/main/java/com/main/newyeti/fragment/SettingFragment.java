@@ -59,12 +59,10 @@ public class SettingFragment extends Fragment {
         }
         textUserNameSetting.setText(username);
 
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), ProfileActivity.class);
-                startActivity(intent);
-            }
+        info.setOnClickListener(v -> {
+            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+            intent.putExtra(DataLocalManager.KEY_PROFILE, DataLocalManager.VALUE_PROFILE_MINE);
+            startActivity(intent);
         });
 
         logout.setOnClickListener(v -> openLogoutDialog());
