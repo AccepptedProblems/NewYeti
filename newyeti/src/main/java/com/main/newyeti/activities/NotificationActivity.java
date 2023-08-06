@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.main.newyeti.R;
@@ -46,8 +48,12 @@ public class NotificationActivity extends AppCompatActivity {
 
         notificationAdapter = new NotificationAdapter(this);
         getListNotification();
-//        notificationAdapter.setListNotifications(list);
-//        notificationView.setAdapter(notificationAdapter);
+
+        ImageView arrowBack = findViewById(R.id.arrowBack);
+        arrowBack.setOnClickListener(v -> {
+
+            finish();
+        });
 
     }
 

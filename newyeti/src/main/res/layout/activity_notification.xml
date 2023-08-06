@@ -1,24 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activities.NotificationActivity">
 
+    <ImageView
+        android:id="@+id/ivBkg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/primary"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/arrowBack"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintTop_toTopOf="@id/ivBkg"
+        android:paddingLeft="15dp"
+        tools:ignore="NotSibling" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:padding="12dp"
-        android:layout_gravity="center"
-        android:textSize="@dimen/_18sdp"
-        android:text="@string/title_acpFriend" />
+        android:text="@string/title_acpFriend"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivBkg"
+        app:layout_constraintEnd_toEndOf="@id/ivBkg"
+        app:layout_constraintStart_toStartOf="@id/ivBkg"
+        app:layout_constraintTop_toTopOf="@id/ivBkg" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listNotification"
+
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivBkg">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"/>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/scroll"
+        app:layout_constraintEnd_toEndOf="@id/scroll"
+        app:layout_constraintStart_toStartOf="@id/scroll"
+        app:layout_constraintTop_toTopOf="@id/scroll" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
