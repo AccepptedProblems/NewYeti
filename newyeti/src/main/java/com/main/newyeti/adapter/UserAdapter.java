@@ -2,6 +2,7 @@ package com.main.newyeti.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.newyeti.R;
+import com.main.newyeti.activities.ProfileActivity;
 import com.main.newyeti.model.AddFriendReq;
 import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.ApiService;
@@ -67,6 +69,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             addFriend(DataLocalManager.getMyUserId(), user.getId());
             holder.btnAddFriend.setVisibility(View.GONE);
             holder.loading(false);
+        });
+
+        holder.resourceAvt.setOnClickListener(v -> {
+            goToProfile(DataLocalManager.VALUE_PROFILE_NO_FRIEND);
         });
     }
 
@@ -132,6 +138,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 Toast.makeText(mContext, "Add friend failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void goToProfile(int typeProfile) {
+        Intent intent = new Intent(mContext, ProfileActivity.class);
+        intent.putExtra(DataLocalManager.KEY_PROFILE, typeProfile);
+        mContext.startActivity(intent);
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {

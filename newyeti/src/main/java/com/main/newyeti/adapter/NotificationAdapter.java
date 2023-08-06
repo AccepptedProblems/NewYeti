@@ -70,9 +70,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         });
 
         holder.resourceAvt.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, ProfileActivity.class);
-            intent.putExtra(DataLocalManager.KEY_PROFILE, DataLocalManager.VALUE_PROFILE_ACCEPT_FRIEND);
-            mContext.startActivity(intent);
+            goToProfile(DataLocalManager.VALUE_PROFILE_ACCEPT_FRIEND);
         });
     }
 
@@ -112,6 +110,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 Toast.makeText(mContext, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void goToProfile(int typeProfile) {
+        Intent intent = new Intent(mContext, ProfileActivity.class);
+        intent.putExtra(DataLocalManager.KEY_PROFILE, typeProfile);
+        mContext.startActivity(intent);
     }
 
     public static class NotificationViewHolder extends RecyclerView.ViewHolder {

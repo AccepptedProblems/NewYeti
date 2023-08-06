@@ -60,9 +60,7 @@ public class SettingFragment extends Fragment {
         textUserNameSetting.setText(username);
 
         info.setOnClickListener(v -> {
-            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
-            intent.putExtra(DataLocalManager.KEY_PROFILE, DataLocalManager.VALUE_PROFILE_MINE);
-            startActivity(intent);
+            goToProfile(DataLocalManager.VALUE_PROFILE_MINE);
         });
 
         logout.setOnClickListener(v -> openLogoutDialog());
@@ -102,5 +100,11 @@ public class SettingFragment extends Fragment {
         });
 
         dialog.show();
+    }
+
+    private void goToProfile(int typeProfile) {
+        Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+        intent.putExtra(DataLocalManager.KEY_PROFILE, typeProfile);
+        startActivity(intent);
     }
 }
