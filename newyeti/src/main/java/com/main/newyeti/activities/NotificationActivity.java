@@ -3,6 +3,7 @@ package com.main.newyeti.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class NotificationActivity extends AppCompatActivity {
     NotificationAdapter notificationAdapter;
     RecyclerView notificationView;
     ProgressBar progressBar;
+    ImageView arrowBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class NotificationActivity extends AppCompatActivity {
 
         notificationView = findViewById(R.id.listNotification);
         progressBar = findViewById(R.id.progressBar);
+        arrowBack = findViewById(R.id.arrowBack);
+
+        arrowBack.setOnClickListener(v -> onBackPressed());
 
         notificationView.addItemDecoration(
                 new DividerItemDecoration(this, RecyclerView.VERTICAL));

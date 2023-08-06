@@ -26,7 +26,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     // TODO: Change this to your IP address, ipconfig in cmd -> adapter wifi -> IPv4 Address
-    String BASE_URL = "http://192.168.1.109:8081/";
+    String BASE_URL = "http://192.168.1.212:8081/";
     String header = "Bearer " + DataLocalManager.getApiKey();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
