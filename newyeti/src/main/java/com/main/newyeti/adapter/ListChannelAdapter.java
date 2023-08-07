@@ -69,7 +69,6 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
             Gson gson = new Gson();
             String json = gson.toJson(channel);
             intent.putExtra(DataLocalManager.KEY_CURRENT_CHANNEL, json);
-
             mContext.startActivity(intent);
         });
     }

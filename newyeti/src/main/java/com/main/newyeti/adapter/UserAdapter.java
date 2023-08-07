@@ -72,7 +72,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         });
 
         holder.resourceAvt.setOnClickListener(v -> {
-            goToProfile(DataLocalManager.VALUE_PROFILE_NO_FRIEND);
+            goToProfile(DataLocalManager.VALUE_PROFILE_NO_FRIEND, user.getId());
         });
     }
 
@@ -140,9 +140,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         });
     }
 
-    private void goToProfile(int typeProfile) {
+    private void goToProfile(int typeProfile, String idUser) {
         Intent intent = new Intent(mContext, ProfileActivity.class);
         intent.putExtra(DataLocalManager.KEY_PROFILE, typeProfile);
+        intent.putExtra(DataLocalManager.KEY_USER_ID, idUser);
         mContext.startActivity(intent);
     }
 

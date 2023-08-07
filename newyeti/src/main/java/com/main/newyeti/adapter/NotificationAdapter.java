@@ -70,7 +70,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         });
 
         holder.resourceAvt.setOnClickListener(v -> {
-            goToProfile(DataLocalManager.VALUE_PROFILE_ACCEPT_FRIEND);
+            goToProfile(DataLocalManager.VALUE_PROFILE_ACCEPT_FRIEND, notification.getUser().getId(), notification.getId());
         });
     }
 
@@ -112,9 +112,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         });
     }
 
-    private void goToProfile(int typeProfile) {
+    private void goToProfile(int typeProfile, String userid, String relationshipId) {
         Intent intent = new Intent(mContext, ProfileActivity.class);
         intent.putExtra(DataLocalManager.KEY_PROFILE, typeProfile);
+        intent.putExtra(DataLocalManager.KEY_USER_ID, userid);
+        intent.putExtra(DataLocalManager.KEY_RELATIONSHIP_ID, relationshipId);
         mContext.startActivity(intent);
     }
 
