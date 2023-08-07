@@ -16,6 +16,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessageActivity extends AppCompatActivity {
     private User receiverUser;
     private String nameReceiverUser;
+    private String idReceiverUser;
     private TextView tvUsernameInChat;
 
     @Override
@@ -30,7 +31,7 @@ public class MessageActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(v -> onBackPressed());
         CircleImageView avt = findViewById(R.id.avt);
         avt.setOnClickListener(v -> {
-            goToProfile(DataLocalManager.VALUE_PROFILE_FRIEND);
+            goToProfile(DataLocalManager.VALUE_PROFILE_FRIEND, idReceiverUser);
         });
 
         loadReceiverUser();
@@ -40,13 +41,15 @@ public class MessageActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             nameReceiverUser = bundle.getString(DataLocalManager.KEY_NAME_RECEIVER_USER);
+            idReceiverUser = bundle.getString(DataLocalManager.KEY_ID_RECEIVER_USER);
             tvUsernameInChat.setText(nameReceiverUser);
         }
     }
 
-    private void goToProfile(int typeProfile) {
+    private void goToProfile(int typeProfile, String idUser) {
         Intent intent = new Intent(MessageActivity.this, ProfileActivity.class);
         intent.putExtra(DataLocalManager.KEY_PROFILE, typeProfile);
+        intent.putExtra(DataLocalManager.KEY_USER_ID, idUser);
         startActivity(intent);
     }
 }

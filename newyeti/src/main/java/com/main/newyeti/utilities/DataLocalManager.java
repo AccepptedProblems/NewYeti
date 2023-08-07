@@ -16,7 +16,8 @@ import java.util.List;
 public class DataLocalManager {
     public static final String KEY_ID_RECEIVER_USER = "KEY_ID_RECEIVER_USER";
     public static final String KEY_NAME_RECEIVER_USER = "KEY_NAME_USER_TO";
-    private static final String KEY_USER_ID = "KEY_USER_ID";
+    public static final String KEY_USER_ID = "KEY_USER_ID";
+    public static final String KEY_RELATIONSHIP_ID = "KEY_RELATIONSHIP_ID";
     private static final String API_KEY = "API_KEY";
     private static final String KEY_NAME = "KEY_NAME";
     private static final String KEY_EMAIL = "KEY_EMAIL";

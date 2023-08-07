@@ -1,5 +1,6 @@
 package com.main.newyeti.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User {
@@ -99,7 +100,10 @@ public class User {
     }
 
     public String getGender() {
-        return gender;
+        if (gender == "MALE") {
+            return "Name";
+        }
+        return "Nữ";
     }
 
     public void setGender(String gender) {
@@ -108,6 +112,13 @@ public class User {
 
     public Date getDayOfBirth() {
         return dayOfBirth;
+    }
+
+    public String getDayOfBirthString() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = dateFormat.format(dayOfBirth);
+        return formattedDate;
     }
 
     public void setDayOfBirth(Date dayOfBirth) {

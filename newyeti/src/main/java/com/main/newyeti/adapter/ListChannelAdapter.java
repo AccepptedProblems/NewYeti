@@ -62,6 +62,7 @@ public class ListChannelAdapter extends RecyclerView.Adapter<ListChannelAdapter.
         holder.itemChat.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, MessageActivity.class);
             intent.putExtra(DataLocalManager.KEY_NAME_RECEIVER_USER, receiverUser.getDisplayName());
+            intent.putExtra(DataLocalManager.KEY_ID_RECEIVER_USER, receiverUser.getId());
             mContext.startActivity(intent);
         });
     }
