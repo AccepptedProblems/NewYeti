@@ -20,6 +20,7 @@ import com.main.newyeti.R;
 import com.main.newyeti.activities.LoginActivity;
 import com.main.newyeti.activities.MainActivity;
 import com.main.newyeti.activities.ProfileActivity;
+import com.main.newyeti.fragment.ListFriendsFragment;
 import com.main.newyeti.model.Notification;
 import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.ApiService;
@@ -69,6 +70,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.loading(false);
         });
 
+        holder.btnDelete.setOnClickListener(v -> {
+            holder.loading(true);
+            cancelFriend(notification.getUser().getId());
+            holder.loading(false);
+        });
+
         holder.resourceAvt.setOnClickListener(v -> {
             goToProfile(DataLocalManager.VALUE_PROFILE_ACCEPT_FRIEND, notification.getUser().getId(), notification.getId());
         });
@@ -108,6 +115,29 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 Log.e("MyLog", "acceptFriend: onFailure: " + t.getMessage());
                 Toast.makeText(mContext, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void cancelFriend(String userId) {
+        ApiService.apiService.deleteFriend(userId).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                Log.e("MyLog", "Notification:cancelFriend onResponse: " + response.body());
+                if (response.body() != null && response.isSuccessful()) {
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    mContext.startActivity(intent);
+                    Toast.makeText(mContext, "Cancel friend successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Cancel friend failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                Log.e("MyLog", "Notification:cancelFriend onFailure: " + t.getMessage());
+                Toast.makeText(mContext, "Cancel friend failed", Toast.LENGTH_SHORT).show();
             }
         });
     }

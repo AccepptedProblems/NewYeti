@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,7 @@ public class SettingFragment extends Fragment {
             // Xóa Auth Token
             DataLocalManager.setApiKey("");
             DataLocalManager.setMyUserId("");
+            Log.e("MyLog", "Logout: " + DataLocalManager.getApiKey());
             Intent intent = new Intent(view.getContext(), LoginActivity.class);
             startActivity(intent);
             // finish activity

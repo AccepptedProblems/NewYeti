@@ -17,6 +17,8 @@ public class DataLocalManager {
     private static final String KEY_NAME = "KEY_NAME";
     private static final String KEY_EMAIL = "KEY_EMAIL";
     private static final String KEY_PASSWORD = "KEY_PASSWORD";
+    private static final String KEY_GENDER = "KEY_GENDER";
+    private static final String KEY_BIRTHDAY = "KEY_BIRTHDAY";
     private static DataLocalManager instance;
     private MySharedPreferences mySharedPreferences;
 
@@ -70,6 +72,22 @@ public class DataLocalManager {
 
     public static void setMyPassword(String password) {
         DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_PASSWORD, password);
+    }
+
+    public static String getMyGender() {
+        return DataLocalManager.getInstance().mySharedPreferences.getStringValue(KEY_GENDER);
+    }
+
+    public static void setMyGender(String gender) {
+        DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_GENDER, gender);
+    }
+
+    public static String getBirthday() {
+        return DataLocalManager.getInstance().mySharedPreferences.getStringValue(KEY_BIRTHDAY);
+    }
+
+    public static void setMyBirthday(String birthday) {
+        DataLocalManager.getInstance().mySharedPreferences.putStringValue(KEY_BIRTHDAY, birthday);
     }
 
     public static void clear() {

@@ -9,10 +9,14 @@ public class User {
     private int resourceAvt = R.drawable.avatar;
     private String id;
     private String username;
+    private String password;
     private String email;
     private String displayName;
     private String gender;
     private Date dayOfBirth;
+
+    public User() {
+    }
 
     public User(String id, String username, String email, String displayName, String gender, Date dayOfBirth) {
         this.id = id;
@@ -21,6 +25,14 @@ public class User {
         this.displayName = displayName;
         this.gender = gender;
         this.dayOfBirth = dayOfBirth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getResourceAvt() {

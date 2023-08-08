@@ -30,7 +30,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     // TODO: Change this to your IP address, ipconfig in cmd -> adapter wifi -> IPv4 Address
-    String BASE_URL = "http://192.168.1.109:8081/";
+    String BASE_URL = "http://10.90.21.4:8081/";
     String header = "Bearer " + DataLocalManager.getApiKey();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
@@ -84,6 +84,12 @@ public interface ApiService {
 
     @POST("v1/api/message")
     Call<Message> sendMessage(@Body Message message);
+
+    @PUT("v1/api/user")
+    Call<User> updateUser(@Body User user);
+
+    @DELETE("v1/api/friend/{id}")
+    Call<User> deleteFriend(@Path("id") String id);
 
     @DELETE("v1/api/message/{id}")
     Call<Message> deleteMessage(@Path("id") String id);

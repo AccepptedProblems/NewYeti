@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                     DataLocalManager.setMyName(res.getDisplayName());
                     DataLocalManager.setMyEmail(res.getEmail());
                     DataLocalManager.setMyPassword(user.getPassword());
+                    DataLocalManager.setMyGender(res.getGender());
+                    DataLocalManager.setMyBirthday(res.getDayOfBirthString());
 
                     //Tạo Intent để truyền dữ liệu sang Main
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
