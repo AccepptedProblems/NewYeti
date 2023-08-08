@@ -19,6 +19,7 @@
     <string name="pass_register">Mật khẩu</string>
     <string name="input_pw_register">Nhập mật khẩu</string>
     <string name="reinput_pw_register">Nhập lại mật khẩu</string>
+    <string name="input_new_pass">Nhập mật khẩu mới</string>
     <string name="sex_register">Giới tính</string>
     <string name="DoB_register">Ngày sinh</string>
     <string name="male_register">Nam</string>

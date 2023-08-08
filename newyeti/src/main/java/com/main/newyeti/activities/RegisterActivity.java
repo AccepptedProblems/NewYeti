@@ -146,14 +146,16 @@ public class RegisterActivity extends AppCompatActivity {
             String gender = radioMale.isChecked() ? "MALE" : "FEMALE";
 
             String dateOfBirthString = btnChooseDate.getText().toString().trim();
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date dateOfBirth;
-
+            SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateOfBirth = null;
             try {
-                dateOfBirth = format.parse(dateOfBirthString);
+                Date date = inputFormat.parse(dateOfBirthString); // Chuyển đổi chuỗi thành kiểu Date
+                String convertedDate = outputFormat.format(date); // Chuyển đổi kiểu Date thành chuỗi định dạng mới
+                dateOfBirth = outputFormat.parse(convertedDate); // Chuyển đổi chuỗi thành kiểu Date
             } catch (ParseException e) {
                 Log.e("MyLog", "Register checkInput: " + e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
             return new User(username, password, email, name, gender, dateOfBirth);
         }
@@ -166,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
             month = month + 1;
-            String date = day + "/" + month + "/" + year;
+            String date = day + "-" + month + "-" + year;
             btnChooseDate.setText(date);
         };
 

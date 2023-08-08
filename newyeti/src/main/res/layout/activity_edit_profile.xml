@@ -63,7 +63,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvDescription" />
 
         <EditText
-            android:id="@+id/etNameRegis"
+            android:id="@+id/editName"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
             android:autofillHints=""
@@ -82,36 +82,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
         <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/text_email_register"
-            android:textSize="@dimen/_12ssp"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
-
-        <EditText
-            android:id="@+id/etEmailRegis"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
-            android:autofillHints=""
-            android:background="@drawable/custom_edittext"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/hint_email_register"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
-
-        <TextView
             android:id="@+id/tvPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +90,7 @@
             android:text="@string/pass_register"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
         <EditText
             android:id="@+id/etPasswordRegis"
@@ -148,7 +118,7 @@
             android:background="@drawable/custom_edittext"
             android:ems="10"
             android:fontFamily="@font/poppins_regular"
-            android:hint="@string/reinput_pw_register"
+            android:hint="@string/input_new_pass"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:paddingStart="@dimen/_10sdp"
@@ -171,7 +141,7 @@
             app:layout_constraintTop_toTopOf="@+id/etPasswordRegis" />
 
         <RadioGroup
-            android:id="@+id/genderRegis"
+            android:id="@+id/editGender"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_40sdp"
             android:orientation="horizontal"
@@ -208,7 +178,7 @@
 
 
         <Button
-            android:id="@+id/btnChooseDate"
+            android:id="@+id/btnEditDate"
             style="?android:spinnerStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -230,10 +200,10 @@
             android:animateLayoutChanges="true"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/btnChooseDate">
+            app:layout_constraintTop_toBottomOf="@+id/btnEditDate">
 
             <Button
-                android:id="@+id/btnRegis"
+                android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/secondary"

@@ -16,6 +16,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ViewPager2 viewPager2;
+    private String fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager2 = findViewById(R.id.viewPager);
         bottomNavigationView = findViewById(R.id.bottomNav);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+            fragment = bundle.getString("fragment");
+        }
 
         ViewpagerAdapter viewpagerAdapter = new ViewpagerAdapter(this);
         viewPager2.setAdapter(viewpagerAdapter);
@@ -53,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.menu_list_channels) {
+            if (item.getItemId() == R.id.menu_list_channels ) {
                 viewPager2.setCurrentItem(0);
-            } else if (item.getItemId() == R.id.menu_list_friends) {
+            } else if (item.getItemId() == R.id.menu_list_friends ) {
                 viewPager2.setCurrentItem(1);
-            } else if (item.getItemId() == R.id.menu_settings) {
+            } else if (item.getItemId() == R.id.menu_settings ) {
                 viewPager2.setCurrentItem(2);
             }
             return true;

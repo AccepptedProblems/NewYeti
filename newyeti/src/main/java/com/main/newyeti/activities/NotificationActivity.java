@@ -66,9 +66,8 @@ public class NotificationActivity extends AppCompatActivity {
                 loading(false);
                 if (response.body() != null && response.isSuccessful()) {
                     Log.e("MyLog", "ListFriendsRequest:getListFriendRequest: onResponse: " + response.body());
-                    List<Notification> friendListRequest = response.body();
-                    if (friendListRequest.size() > 0) {
-                        notificationAdapter.setListNotifications(friendListRequest);
+                    if (response.body() != null) {
+                        notificationAdapter.setListNotifications(response.body());
                         notificationView.setAdapter(notificationAdapter);
 //                        Toast.makeText(this, "Có " + list.size() + " bạn bè", Toast.LENGTH_SHORT).show();
                     }

@@ -42,7 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
         dateOfBirth = findViewById(R.id.dateOfBirth);
         gender = findViewById(R.id.gender);
         email = findViewById(R.id.email);
-        ImageView edit = findViewById(R.id.edit);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -73,13 +72,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        if(edit.getVisibility() == View.VISIBLE){
-            edit.setOnClickListener(v -> {
-                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-            });
-        }
-
         chat.setOnClickListener(v -> {
             if (chat.getVisibility() == View.VISIBLE) {
                 // startChatActivity();
@@ -88,7 +80,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         edit.setOnClickListener(v -> {
             if (edit.getVisibility() == View.VISIBLE) {
-                // editProfile();
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -209,5 +202,22 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void cancelFriend() {
+        ApiService.apiService.deleteFriend(userId).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                Log.e("MyLog", "ProfileActivity:cancelFriend onResponse: " + response.body());
+                if (response.body() != null && response.isSuccessful()) {
+                    Toast.makeText(ProfileActivity.this, "Cancel friend successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ProfileActivity.this, "Cancel friend failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                Log.e("MyLog", "ProfileActivity:cancelFriend onFailure: " + t.getMessage());
+                Toast.makeText(ProfileActivity.this, "Cancel friend failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

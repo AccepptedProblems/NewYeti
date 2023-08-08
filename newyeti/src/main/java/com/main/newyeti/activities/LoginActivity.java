@@ -93,6 +93,8 @@ public class LoginActivity extends AppCompatActivity {
                     DataLocalManager.setMyName(res.getDisplayName());
                     DataLocalManager.setMyEmail(res.getEmail());
                     DataLocalManager.setMyPassword(user.getPassword());
+                    DataLocalManager.setMyGender(res.getGender());
+                    DataLocalManager.setMyBirthday(res.getDayOfBirthString());
 
                     //Tạo Intent để truyền dữ liệu sang Main
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -100,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                    Log.e("MyLog", "Login Failed " + response.body());
+                    Log.e("MyLog", "Login Failed " + response.body() + " " + response.message() + " " + response.code());
                 }
             }
 
