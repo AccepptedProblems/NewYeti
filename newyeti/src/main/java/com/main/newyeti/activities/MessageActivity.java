@@ -1,5 +1,6 @@
 package com.main.newyeti.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,10 @@ import com.main.newyeti.model.Message;
 import com.main.newyeti.utilities.ApiService;
 import com.main.newyeti.utilities.DataLocalManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +39,9 @@ public class MessageActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private RecyclerView rvMessage;
     private MessageAdapter listMessageAdapter;
-    private ImageView sendIcon;
+    private ImageView btnSend;
     private EditText etMessage;
+    private List<Message> listMessages = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +66,10 @@ public class MessageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        sendIcon = findViewById(R.id.sendIcon);
-        sendIcon.setOnClickListener(v -> {
+        btnSend = findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(v -> {
             sendMessage();
         });
-
     }
 
     @Override
@@ -84,19 +89,19 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void getMessageInChannel() {
-        progressBar.setVisibility(ProgressBar.VISIBLE);
+        if (listMessages == null)
+            progressBar.setVisibility(ProgressBar.VISIBLE);
 
         ApiService.apiService.getListMessages(currentChannel.getId()).enqueue(new retrofit2.Callback<List<Message>>() {
             @Override
             public void onResponse(@NonNull Call<List<Message>> call, @NonNull Response<List<Message>> response) {
                 progressBar.setVisibility(ProgressBar.GONE);
                 if (response.isSuccessful()) {
-                    List<Message> listMessages = response.body();
+                    listMessages = response.body();
                     if (listMessages != null) {
                         Log.e("MyLog", "getListMessage onResponse: " + listMessages.size());
                         listMessageAdapter.setMessageAdapter(listMessages, DataLocalManager.getMyUserId());
                         rvMessage.setAdapter(listMessageAdapter);
-                        rvMessage.scrollToPosition(listMessages.size() - 1);
                     }
                 } else if (response.code() == 401) {
                     Toast.makeText(MessageActivity.this, "Phiên đăng nhập hết hạn", Toast.LENGTH_SHORT).show();
@@ -125,18 +130,28 @@ public class MessageActivity extends AppCompatActivity {
             return;
         }
         Message message = null;
+        LocalDateTime localDateTime;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            // get time now type date
-            Date date = new Date();
+            localDateTime = LocalDateTime.now();
+
+            Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try {
+                date = formatter.parse(formatter.format(date));
+            } catch (ParseException e) {
+                Log.e("MyLog", "sendMessage: " + e.getMessage());
+            }
+            Log.e("MyLog", "sendMessage: " + date.toString());
             message = new Message(currentChannel.getId(), DataLocalManager.getMyUserId(), Message.MessageType.TEXT, etMessage.getText().toString(), date);
         }
+
         ApiService.apiService.sendMessage(message).enqueue(new retrofit2.Callback<Message>() {
             @Override
             public void onResponse(@NonNull Call<Message> call, @NonNull Response<Message> response) {
                 if (response.isSuccessful()) {
                     Message message = response.body();
                     if (message != null) {
-                        Log.e("MyLog", "sendMessage onResponse: " + message.getContent());
+                        Log.e("MyLog", "sendMessage onResponse: " + message.getContent() + " " + message.getTimeSent());
                         etMessage.setText("");
                         getMessageInChannel();
                     }

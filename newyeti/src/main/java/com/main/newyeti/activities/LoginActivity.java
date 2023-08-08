@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.R;
+import com.main.newyeti.model.LoginReq;
 import com.main.newyeti.model.LoginResp;
 import com.main.newyeti.model.User;
 import com.main.newyeti.utilities.ApiService;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         login.setOnClickListener(view -> {
-            User user = checkValid();
+            LoginReq user = checkValid();
             if (user != null) {
                 login(user);
             }
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void login(User user) {
+    private void login(LoginReq user) {
         loading(true);
         ApiService.apiService.login(user).enqueue(new Callback<LoginResp>() {
             @Override
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 loading(false);
                 if (response.body() != null && response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    Log.e("MyLog", "Login Success " + response.body().getApiKey());
+                    Log.e("MyLog", "Login Success - API KEY: " + response.body().getApiKey());
 
                     // Lấy apiKey, userId để lưu vào shared preferences
                     String apiKey = response.body().getApiKey();
@@ -99,8 +100,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                    Log.e("MyLog", "Login Failed " + response.body());
+                    Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Log.e("MyLog", "Login Failed " + response.code() + " " + response.message());
                 }
             }
 
@@ -123,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private User checkValid() {
+    private LoginReq checkValid() {
         String emailText = email.getText().toString().trim();
         String passwordText = password.getText().toString().trim();
 
@@ -137,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
             password.setError("Mật khẩu không được để trống");
             return null;
         } else {
-            return new User(emailText, passwordText);
+            return new LoginReq(emailText, passwordText);
         }
     }
 }

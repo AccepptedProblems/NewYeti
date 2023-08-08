@@ -85,7 +85,7 @@ public class ListChannelFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("MyLog", DataLocalManager.getMyUserId());
+        Log.e("MyLog", "ListChannel-onResume userID: " + DataLocalManager.getMyUserId());
         getListChannels();
     }
 
@@ -117,7 +117,7 @@ public class ListChannelFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<List<Channel>> call, @NonNull Throwable t) {
                 loading(false);
-                Log.e("MyLog", t.getMessage());
+                Log.e("MyLog", "ListChannel-onFailure" + t.getMessage());
             }
         });
     }

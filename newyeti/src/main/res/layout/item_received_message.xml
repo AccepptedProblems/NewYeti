@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_received_message"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="@dimen/_4sdp">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -22,7 +22,7 @@
         android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginEnd="@dimen/_4sdp"
         android:background="@drawable/bkg_received_message"
-        android:padding="@dimen/_12sdp"
+        android:padding="@dimen/_10sdp"
         android:textColor="@color/black"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
@@ -40,6 +40,18 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/tvMessage"
         app:layout_constraintTop_toBottomOf="@id/tvMessage" />
+
+    <Button
+        android:id="@+id/tvDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xóa"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8ssp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tvMessage"
+        app:layout_constraintStart_toEndOf="@id/tvMessage"
+        app:layout_constraintTop_toTopOf="@id/tvMessage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

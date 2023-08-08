@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.main.newyeti.R;
 import com.main.newyeti.model.User;
+import com.main.newyeti.model.UserRegister;
 import com.main.newyeti.utilities.ApiService;
 import com.main.newyeti.utilities.DataLocalManager;
 
@@ -64,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         regis.setOnClickListener(v -> {
-            User user = checkInput();
+            UserRegister user = checkInput();
 
             if (user != null)
                 register(user);
@@ -74,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnChooseDate.setOnClickListener(v -> datePickerDialog.show());
     }
 
-    private void register(User user) {
+    private void register(UserRegister user) {
         loading(true);
         ApiService.apiService.register(user).enqueue(new Callback<User>() {
             @Override
@@ -93,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                     finish();
 
                 } else {
+                    Log.e("MyLog", "Register onResponse: " + response.body());
                     showToast("Đăng ký thất bại");
                 }
             }
@@ -117,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private User checkInput() {
+    private UserRegister checkInput() {
         String email = emailRegis.getText().toString().trim();
         String password = passwordRegis.getText().toString().trim();
         String rePassword = rePasswordRegis.getText().toString().trim();
@@ -155,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.e("MyLog", "Register checkInput: " + e.getMessage());
                 throw new RuntimeException(e);
             }
-            return new User(username, password, email, name, gender, dateOfBirth);
+            return new UserRegister(username, password, email, name, gender, dateOfBirth);
         }
     }
 
@@ -166,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
             month = month + 1;
-            String date = day + "/" + month + "/" + year;
+            String date = day + "-" + month + "-" + year;
             btnChooseDate.setText(date);
         };
 

@@ -103,7 +103,6 @@ public class ListFriendsFragment extends Fragment {
 
         List<User> list = new ArrayList<>();
 
-        String header = "Bearer " + DataLocalManager.getApiKey();
         String id = DataLocalManager.getMyUserId();
         ApiService.apiService.getListFriends(id).enqueue(new Callback<List<Friend>>() {
             @Override
@@ -111,16 +110,15 @@ public class ListFriendsFragment extends Fragment {
                 loading(false);
 
                 if (response.isSuccessful()) {
-                    Log.e("MyLog", "ListFriendsFragment:getListFriend: onResponse: " + response.body());
                     List<Friend> friendLists = response.body();
                     if (friendLists != null && friendLists.size() > 0) {
+                        Log.e("MyLog", "ListFriendsFragment:getListFriend: onResponse: " + friendLists.size());
+
                         for (Friend friend : friendLists) {
-                            User user = new User(friend.getUser());
-                            user.setResourceAvt(R.drawable.avatar);
-                            list.add(user);
+                            list.add(friend.getUser());
                         }
 
-                        friendAdapter.setListUser(list);
+                        friendAdapter.setListFriend(list);
                         listFriendsView.setAdapter(friendAdapter);
                     } else {
                         Toast.makeText(getActivity(), "Bạn chưa có bạn bè nào", Toast.LENGTH_SHORT).show();

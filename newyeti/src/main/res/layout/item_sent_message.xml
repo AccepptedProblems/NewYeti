@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bkg_sent_message"
         android:maxWidth="@dimen/_45sdp"
-        android:padding="@dimen/_8sdp"
+        android:padding="@dimen/_10sdp"
         android:textColor="@color/white"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,5 +30,17 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMessage" />
+
+    <Button
+        android:id="@+id/tvDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xóa"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8ssp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tvMessage"
+        app:layout_constraintEnd_toStartOf="@id/tvMessage"
+        app:layout_constraintTop_toTopOf="@id/tvMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

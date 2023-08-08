@@ -73,7 +73,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        if(edit.getVisibility() == View.VISIBLE){
+        if (edit.getVisibility() == View.VISIBLE) {
             edit.setOnClickListener(v -> {
                 Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
                 startActivity(intent);
@@ -129,7 +129,7 @@ public class ProfileActivity extends AppCompatActivity {
         ApiService.apiService.getUserById(id).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     Log.e("MyLog", "ProfileActivity: getUserById: onResponse: " + response.body());
                     if (response.body() != null) {
                         nameProfile.setText(response.body().getDisplayName());

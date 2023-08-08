@@ -5,10 +5,12 @@ import com.google.gson.GsonBuilder;
 import com.main.newyeti.model.AddFriendReq;
 import com.main.newyeti.model.Channel;
 import com.main.newyeti.model.Friend;
+import com.main.newyeti.model.LoginReq;
 import com.main.newyeti.model.LoginResp;
 import com.main.newyeti.model.Message;
 import com.main.newyeti.model.Notification;
 import com.main.newyeti.model.User;
+import com.main.newyeti.model.UserRegister;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -46,10 +49,10 @@ public interface ApiService {
             .build().create(ApiService.class);
 
     @POST("v1/api/user/login")
-    Call<LoginResp> login(@Body User user);
+    Call<LoginResp> login(@Body LoginReq user);
 
     @POST("v1/api/user/register")
-    Call<User> register(@Body User user);
+    Call<User> register(@Body UserRegister user);
 
     @GET("v1/api/user/{id}")
     Call<User> getUserById(@Path("id") String id);
@@ -76,6 +79,13 @@ public interface ApiService {
     @GET("v1/api/message")
     Call<List<Message>> getListMessages(@Query("channelId") String channelId);
 
+    @GET("v1/api/channel/direct")
+    Call<Channel> getChannelById(@Query("userId") String userId);
+
     @POST("v1/api/message")
     Call<Message> sendMessage(@Body Message message);
+
+    @DELETE("v1/api/message/{id}")
+    Call<Message> deleteMessage(@Path("id") String id);
+
 }

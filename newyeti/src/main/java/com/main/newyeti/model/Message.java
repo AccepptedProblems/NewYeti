@@ -76,7 +76,8 @@ public class Message {
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
             return formatter.format(timeSent);
         } else {
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            // format date to string like "dd/MM/yyyy" if timeSent is not today
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             return formatter.format(timeSent);
         }
     }

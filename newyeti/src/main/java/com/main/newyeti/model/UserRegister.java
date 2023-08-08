@@ -1,42 +1,22 @@
 package com.main.newyeti.model;
 
-import com.main.newyeti.R;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class User {
-    private int resourceAvt = R.drawable.avatar;
-    private String id;
+public class UserRegister {
     private String username;
+    private String password;
     private String email;
     private String displayName;
     private String gender;
     private Date dayOfBirth;
 
-    public User(String id, String username, String email, String displayName, String gender, Date dayOfBirth) {
-        this.id = id;
+    public UserRegister(String username, String password, String email, String displayName, String gender, Date dayOfBirth) {
         this.username = username;
+        this.password = password;
         this.email = email;
         this.displayName = displayName;
         this.gender = gender;
         this.dayOfBirth = dayOfBirth;
-    }
-
-    public int getResourceAvt() {
-        return resourceAvt;
-    }
-
-    public void setResourceAvt(int resourceAvt) {
-        this.resourceAvt = resourceAvt;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -45,6 +25,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -80,11 +68,5 @@ public class User {
 
     public void setDayOfBirth(Date dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
-    }
-
-    public String getDayOfBirthString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String formattedDate = dateFormat.format(dayOfBirth);
-        return formattedDate;
     }
 }
